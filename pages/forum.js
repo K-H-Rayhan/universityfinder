@@ -6,7 +6,7 @@ export default function Example() {
 
     return (
         <Layout>
-            Forum
+            <h1 className=' text-center'>Forum</h1>
         </Layout>
     )
 }

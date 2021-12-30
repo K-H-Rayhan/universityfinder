@@ -5,7 +5,11 @@ module.exports = {
     "/images/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      margin: {
+        '3px': '2px',
+      }
+    },
   },
   plugins: [
     require('tailwind-scrollbar'),
