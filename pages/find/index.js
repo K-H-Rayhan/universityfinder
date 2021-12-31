@@ -13,13 +13,11 @@ import {
 } from "../../component/filters/states";
 import Listedbox2 from "../../component/small/Listedbox2";
 function index() {
-  const [selected, setSelected] = useState(location[0]);
-  const [selected2, setSelected2] = useState(departments[0]);
+  const [selected, SetSelected] = useState(location[0]);
+  const [selected2, SetSelected2] = useState(departments[0]);
   return (
-    <departmentContext.Provider value={{ selected2, setSelected2 }}>
-      <locationContext.Provider value={{ selected, setSelected }}>
-        {console.log(selected)}
-        {console.log(selected2)}
+    <departmentContext.Provider value={{ selected2, SetSelected2 }}>
+      <locationContext.Provider value={{ selected, SetSelected }}>
         <Layout className=" text-9xl">
           <div className="m-5 place-content-between gap-y-2 grid grid-cols-2 lg:grid-cols-4 gap-x-2">
             <div className=" flex flex-col items-center">
