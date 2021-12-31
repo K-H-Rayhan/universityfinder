@@ -8,4 +8,4 @@ function Prepare() {
     )
 }
 
-export default prepare
+export default Prepare
