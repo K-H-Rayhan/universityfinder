@@ -14,8 +14,7 @@ import {
 // } from "../../component/filters/states";
 
 function index() {
-  const [selected, SetSelected] = useState();
-  const [selected2, SetSelected2] = useState();
+ const [x, setX] = useState(null)
   return (
     // <departmentContext.Provider value={{ selected2, SetSelected2 }}>
     //   <locationContext.Provider value={{ selected, SetSelected }}>
