@@ -115,6 +115,11 @@ export default function Header() {
   const nice = () => {
     console.log("Nice");
   };
+  const pathChecker = (current,name) => {
+    router.pathname  == "/" + name.toLowerCase()
+                            ? (current = true)
+                            : (current = false)
+  }
   return (
     <Disclosure as="nav" className=" bg-white z-50 border-b-2 border-gray-100">
       {({ open }) => (
@@ -163,9 +168,7 @@ export default function Header() {
                         >
                           {item.svg}
                           {item.name}
-                          {"/" + item.name.toLowerCase() == router.pathname
-                            ? (item.current = true)
-                            : (item.current = false)}
+                          {pathChecker(item.current, item.name)}
                         </a>
                       </Link>
                     ))}
