@@ -1,4 +1,4 @@
-import { useState } from "react";
+import react, { useState } from "react";
 import Layout from "../../component/Layout";
 import ListedUniversity from "../../component/small/ListedUniversity";
 import {
@@ -7,14 +7,15 @@ import {
   departments,
 } from "../../component/filters/allFilters";
 import Listedbox from "../../component/small/Listedbox";
+import Listedbox2 from "../../component/small/Listedbox2";
 import {
   locationContext,
   departmentContext,
 } from "../../component/filters/states";
-import Listedbox2 from "../../component/small/Listedbox2";
+
 function index() {
-  const [selected, SetSelected] = useState(null);
-  const [selected2, SetSelected2] = useState(null);
+  const [selected, SetSelected] = useState(location[0])
+  const [selected2, SetSelected2] = useState(departments[0]);
   return (
     <departmentContext.Provider value={{ selected2, SetSelected2 }}>
       <locationContext.Provider value={{ selected, SetSelected }}>
