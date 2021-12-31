@@ -94,4 +94,4 @@ function Ranking() {
     )
 }
 
-export default Profile
+export default Ranking
