@@ -13,7 +13,7 @@ import {
 //   departmentContext,
 // } from "../../component/filters/states";
 
-function index() {
+function Index() {
  const [x, setX] = useState(null)
   return (
     // <departmentContext.Provider value={{ selected2, SetSelected2 }}>
@@ -61,4 +61,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
