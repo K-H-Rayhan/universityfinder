@@ -17,10 +17,10 @@ function Listedbox({ location }) {
             Select Department
           </Listbox.Label>
           <div className="mt-1 relative">
-          <Listbox.Button className="relative bg-white rounded-md  shadow-md pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 sm:text-sm  w-22">
+          <Listbox.Button className="relative bg-white rounded-md  shadow-md pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 sm:text-sm w-40">
               <span className="flex items-center">
-                <span className="ml-1 block truncate  w-20 md:w-auto">
-                  {selected2.name}
+                <span className="ml-1 block truncate md:w-auto">
+                  {selected2.name} 
                 </span>
               </span>
               <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none ">

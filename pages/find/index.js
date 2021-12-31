@@ -52,7 +52,8 @@ function Index() {
               </span>
             </div>
           </div>
-
+          {console.log(selected)}
+          {console.log(selected2)}
           <ListedUniversity people1={rankings} />
         </Layout>
       </locationContext.Provider>
