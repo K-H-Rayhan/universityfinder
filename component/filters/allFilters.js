@@ -35,10 +35,6 @@ const location = [
       id: 9,
       name: "Comilla",
     },
-    {
-      id: 10,
-      name: "Rangpur",
-    },
   ];
   const departments = [
     {
