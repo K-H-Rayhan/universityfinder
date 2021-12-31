@@ -13,8 +13,8 @@ import {
 } from "../../component/filters/states";
 import Listedbox2 from "../../component/small/Listedbox2";
 function index() {
-  const [selected, SetSelected] = useState(location[0]);
-  const [selected2, SetSelected2] = useState(departments[0]);
+  const [selected, SetSelected] = useState(null);
+  const [selected2, SetSelected2] = useState(null);
   return (
     <departmentContext.Provider value={{ selected2, SetSelected2 }}>
       <locationContext.Provider value={{ selected, SetSelected }}>
