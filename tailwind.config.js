@@ -15,6 +15,9 @@ module.exports = {
       margin: {
         "3px": "2px",
       },
+      spacing: {
+        '2px': '2px',
+      }
     },
   },
   variants: {

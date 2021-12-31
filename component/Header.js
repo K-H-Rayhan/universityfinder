@@ -206,57 +206,49 @@ export default function Header() {
                   >
                     <Menu.Items className=" z-50 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
-                        {({ active }) => (
-                          <Link href="/profile">
-                            <span
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                " px-4 py-2 text-sm text-black flex flex-row"
-                              )}
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-4 w-4 mt-3px"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                              &nbsp;Your Profile
-                            </span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "flex px-4 py-2 text-sm text-black flex-row"
-                            )}
+                        <Link href="/profile">
+                          <span
+                            className={"hover:bg-gray-100 px-4 py-2 text-sm text-black flex flex-row cursor-pointer"
+                            }
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="h-4 w-4 mt-3px"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
                             >
                               <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                                fillRule="evenodd"
+                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                stroke={4}
+                                clipRule="evenodd"
                               />
                             </svg>
-                            &nbsp;Sign out
-                          </a>
-                        )}
+                            &nbsp; <span className={`font-bold`}>Your Profile</span>
+                          </span>
+                        </Link>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <a
+                          href="#"
+                          className={"hover:bg-gray-100 px-4 py-2 text-sm text-black flex flex-row cursor-pointer"}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4 mt-3px"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                            />
+                          </svg>
+                          &nbsp;<span className={`font-bold`}>Sign Out</span>
+                        </a>
                       </Menu.Item>
                     </Menu.Items>
                   </Transition>

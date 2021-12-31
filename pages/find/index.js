@@ -25,18 +25,18 @@ function Index() {
                 htmlFor="price"
                 className=" text-sm font-medium text-gray-700 hidden sm:block"
               >
-                Select GPA
+                Type your combined GPA
               </label>
               <div className="mt-1 relative rounded-md shadow-md m-1">
-                <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm pl-2">GPA</span>
+                <div className="absolute flex items-center inset-y-0">
+                  <span className="text-gray-500 sm:text-sm pl-2 pt-2px">GPA</span>
                 </div>
                 <input
                   type="text"
                   name="price"
                   id="price"
-                  className="w-full border-0 block pl-10 pr-12 sm:text-sm  rounded-md outline-none h-10"
-                  placeholder="0.00"
+                  className="w-full border-0 pl-10 pr-12 sm:text-sm  rounded-md outline-none h-10 flex  items-center inset-y-0"
+                  placeholder="SSC+HSC"
                 />
               </div>
             </div>
