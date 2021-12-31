@@ -115,7 +115,7 @@ export default function Header() {
   const nice = () => {
     console.log("Nice");
   };
-  const pathChecker = (current,name) => {
+  function pathChecker (current,name){
     router.pathname  == "/" + name.toLowerCase()
                             ? (current = true)
                             : (current = false)
