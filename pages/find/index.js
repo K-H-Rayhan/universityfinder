@@ -14,10 +14,10 @@ import {
 } from "../../component/filters/states";
 
 function index() {
-  const [selected, SetSelected] = useState({});const [selected2, SetSelected2] = useState({});
+  const [selected, SetSelected] = useState(location[0]);const [selected2, SetSelected2] = useState(departments[0]);
   return (
-    <departmentContext.Provider value={{ selected2, SetSelected2 }}>
-      <locationContext.Provider value={{ selected, SetSelected }}>
+ //   <departmentContext.Provider value={{ selected2, SetSelected2 }}>
+    //  <locationContext.Provider value={{ selected, SetSelected }}>
         <Layout className=" text-9xl">
           <div className="m-5 place-content-between gap-y-2 grid grid-cols-2 lg:grid-cols-4 gap-x-2">
             <div className=" flex flex-col items-center">
@@ -41,10 +41,10 @@ function index() {
               </div>
             </div>
             <div className="col-span-1 flex flex-col items-center">
-              <Listedbox location={location} />
+              {/* <Listedbox location={location} /> */}
             </div>
             <div className="col-span-1 flex flex-col items-center">
-              <Listedbox2 location={departments} />
+              {/* <Listedbox2 location={departments} /> */}
             </div>
             <div className=" flex items-center justify-center ">
               <span className="inline-block text-center bg-indigo-600 border border-transparent rounded-3xl py-3 px-8 font-medium text-white hover:bg-indigo-700 cursor-pointer">
@@ -55,8 +55,8 @@ function index() {
 
           <ListedUniversity people1={rankings} />
         </Layout>
-      </locationContext.Provider>
-    </departmentContext.Provider>
+ //     </locationContext.Provider>
+ //   </departmentContext.Provider>
   );
 }
 
