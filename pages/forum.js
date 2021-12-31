@@ -2,7 +2,7 @@ import { Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import Layout from  '../component/Layout'
 
-export default function Example() {
+export default function Forum() {
 
     return (
         <Layout>

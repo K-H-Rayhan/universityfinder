@@ -1,7 +1,7 @@
 import React from "react";
 import { PaperClipIcon } from "@heroicons/react/solid";
 import Layout from "../component/Layout";
-function profile() {
+function Profile() {
   return (
     <Layout>
       <div className="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -58,4 +58,4 @@ function profile() {
   );
 }
 
-export default profile;
+export default Profile;

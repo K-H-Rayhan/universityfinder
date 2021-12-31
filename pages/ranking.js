@@ -14,7 +14,7 @@ const people = [
     // More people...
   ]
   
-function ranking() {
+function Ranking() {
     return (
         <Layout>
             <div className="flex flex-col">
@@ -94,4 +94,4 @@ function ranking() {
     )
 }
 
-export default ranking
+export default Profile

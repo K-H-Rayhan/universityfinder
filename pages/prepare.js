@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../component/Layout'
-function prepare() {
+function Prepare() {
     return (
         <Layout>
             Prepare

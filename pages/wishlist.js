@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from  '../component/Layout'
 
-function wishlist() {
+function Wishlist() {
     return (
         <Layout>
             Wishlist
@@ -9,4 +9,4 @@ function wishlist() {
     )
 }
 
-export default wishlist
+export default Wishlist
