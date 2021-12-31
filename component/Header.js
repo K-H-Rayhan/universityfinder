@@ -157,15 +157,14 @@ export default function Header() {
                       <Link key={item.name} href={item.href}>
                         <a
                           className={classNames(
-                            router.pathname == "/" + item.name.toLowerCase()?" text-indigo-600" : "text-black ",
+                            router.pathname == "/" + item.name.toLowerCase()
+                              ? " text-indigo-600"
+                              : "text-black ",
                             "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight flex flex-row"
                           )}
                         >
                           {item.svg}
                           {item.name}
-                          {/* { 
-                            ? (item.current = true)
-                            : (item.current = false)} */}
                         </a>
                       </Link>
                     ))}
@@ -181,8 +180,8 @@ export default function Header() {
                     <span className="sr-only">View notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
-                  <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-indigo-400 opacity-75"></span>
-                  <span class="absolute inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
+                  <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-indigo-400 opacity-75"></span>
+                  <span className="absolute inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
                 </span>
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
@@ -209,32 +208,29 @@ export default function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <Link href="/profile">
-                            <a
+                            <span
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 " px-4 py-2 text-sm text-black flex flex-row"
                               )}
-                            ><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mt-3px" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                          </svg>
-                          &nbsp;Your Profile
-                            </a>
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4 mt-3px"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              &nbsp;Your Profile
+                            </span>
                           </Link>
                         )}
                       </Menu.Item>
-                      {/* <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-black"
-                            )}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item> */}
                       <Menu.Item>
                         {({ active }) => (
                           <a
@@ -244,10 +240,21 @@ export default function Header() {
                               "flex px-4 py-2 text-sm text-black flex-row"
                             )}
                           >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mt-3px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-</svg>
-&nbsp;Sign out
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4 mt-3px"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                              />
+                            </svg>
+                            &nbsp;Sign out
                           </a>
                         )}
                       </Menu.Item>
