@@ -115,11 +115,6 @@ export default function Header() {
   const nice = () => {
     console.log("Nice");
   };
-  function pathChecker (current,name){
-    router.pathname  == "/" + name.toLowerCase()
-                            ? (current = true)
-                            : (current = false)
-  }
   return (
     <Disclosure as="nav" className=" bg-white z-50 border-b-2 border-gray-100">
       {({ open }) => (
@@ -162,13 +157,15 @@ export default function Header() {
                       <Link key={item.name} href={item.href}>
                         <a
                           className={classNames(
-                            item.current ? " text-indigo-600" : "text-black ",
+                            router.pathname == "/" + item.name.toLowerCase()?" text-indigo-600" : "text-black ",
                             "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight flex flex-row"
                           )}
                         >
                           {item.svg}
                           {item.name}
-                          {pathChecker(item.current, item.name)}
+                          {/* { 
+                            ? (item.current = true)
+                            : (item.current = false)} */}
                         </a>
                       </Link>
                     ))}
