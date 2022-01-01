@@ -112,9 +112,6 @@ function classNames(...classes) {
 
 export default function Header() {
   const router = useRouter();
-  const nice = () => {
-    console.log("Nice");
-  };
   return (
     <Disclosure as="nav" className=" bg-white z-50 border-b-2 border-gray-100">
       {({ open }) => (
@@ -270,7 +267,7 @@ export default function Header() {
                   )}
                   key={item.name}
                 >
-                  <Link href={item.href} onClick={nice}>
+                  <Link href={item.href}>
                     <a>
                       {item.name}
                       {"/" + item.name.toLowerCase() == router.pathname

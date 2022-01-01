@@ -12,7 +12,7 @@ import {
   departmentContext,
 } from "../../component/filters/states";
 import Listedbox2 from "../../component/small/Listedbox2";
-function Index() {
+function Index({universities}) {
   const [selected, setSelected] = useState(location[0]);
   const [selected2, setSelected2] = useState(departments[0]);
   return (
@@ -56,9 +56,7 @@ function Index() {
               </span>
             </div>
           </div>
-          {console.log(selected)}
-          {console.log(selected2)}
-          <ListedUniversity people1={rankings} />
+          <ListedUniversity university={rankings} />
         </Layout>
       </locationContext.Provider>
     </departmentContext.Provider>
@@ -66,3 +64,22 @@ function Index() {
 }
 
 export default Index;
+
+// export async function getServerSideProps() {
+//   // // Calculate start page
+//   // const start = +page === 1 ? 0 : (+page - 1) * PER_PAGE
+
+//   // // Fetch total/count
+//   // const totalRes = await fetch(`${API_URL}/events/count`)
+//   // const total = await totalRes.json()
+
+//   // Fetch events
+//   const universityRes = await fetch(
+//     `http://localhost:3001/api/find/`
+//   )
+//   const universities = await universityRes.json()
+//     console.log(universities);
+//   return {
+//     props: { universities: universities },
+//   }
+// }
