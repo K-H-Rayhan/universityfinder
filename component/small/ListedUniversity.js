@@ -1,6 +1,8 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 function ls({ university }) {
+  const router = useRouter();
   return (
     <div className="flex flex-col">
       <div className=" overflow-x-auto">
@@ -11,7 +13,7 @@ function ls({ university }) {
                 <tr>
                   <th
                     scope="col"
-                    className="pl-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="pl-3 md:px-6 py-3 sm:text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
                   >
                     Rank
                   </th>
@@ -48,16 +50,16 @@ function ls({ university }) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {university.map((person) => (
-                  <tr key={person.univeristy_id}>
+                {university.map((e) => (
+                  <tr key={e.univeristy_id}>
                     <td className="pl-3 md:px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
-                        {person.univeristy_qsranking}
+                      <div className="text-sm text-gray-900 text-center sm:text-left">
+                        {e.univeristy_qsranking}
                       </div>
                     </td>
                     <td className="pl-3 md:px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
-                        {person.university_name}
+                      <div className="text-sm text-gray-900 text-ellipsis w-52">
+                        {e.university_name}
                       </div>
                     </td>
                     <td className="pl-3 md:px-6 py-4 whitespace-nowrap">
@@ -80,14 +82,16 @@ function ls({ university }) {
                     </td>
                     <td className="hidden sm:table-cell pl-3 md:px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {person.university_location}
+                        {e.university_location}
                       </div>
                     </td>
                     <td className="hidden sm:table-cell pl-3 md:px-6 py-4 whitespace-nowrap">
-                      <div className=" text-sm text-gray-900">s</div>
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        {e.scholarship}
+                      </span>
                     </td>
                     <td className="pl-3 md:px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
+                      <div className="text-sm text-gray-900" onClick={()=>router.push(`/find/${e.slug}`)}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-6 w-6 cursor-pointer"
