@@ -7,7 +7,7 @@ function index() {
   return (
     <Layout>
       <div className="relative bg-white overflow-hidden z-auto">
-        <div className="pt-8 sm:pt-24 lg:pt-40 lg:pb-48">
+        <div className="sm:pt-24 lg:pt-40 lg:pb-48">
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
             <div className="sm:max-w-lg">
               <h1 className="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">

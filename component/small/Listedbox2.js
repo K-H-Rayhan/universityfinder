@@ -13,7 +13,7 @@ function Listedbox({ location }) {
     <Listbox value={selected2} onChange={setSelected2}>
       {({ open }) => (
         <>
-          <Listbox.Label className=" text-sm font-medium text-gray-700 hidden sm:block ">
+          <Listbox.Label className=" text-sm font-medium text-gray-700 ">
             Select Department
           </Listbox.Label>
           <div className="mt-1 relative">
