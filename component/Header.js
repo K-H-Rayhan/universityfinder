@@ -264,7 +264,7 @@ export default function Header() {
                   as="a"
                   className={classNames(
                     item.current
-                      ? "bg-black text-white"
+                      ? "bg-indigo-600 text-white"
                       : "text-black hover:bg-indigo-600 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
