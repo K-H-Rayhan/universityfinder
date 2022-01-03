@@ -1,8 +1,19 @@
 import { useRouter } from "next/router";
 import React from "react";
-
+import { Switch, Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
 function ls({ university }) {
+  let [isOpen, setIsOpen] = useState(false);
+  const [enabled, setEnabled] = useState(false);
   const router = useRouter();
+  const user = false;
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
   return (
     <div className="flex flex-col">
       <div className=" overflow-x-auto">
@@ -13,103 +24,103 @@ function ls({ university }) {
                 <tr>
                   <th
                     scope="col"
-                    className="pl-3 md:px-6 py-3 sm:text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                    className="py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
                   >
                     Rank
                   </th>
                   <th
                     scope="col"
-                    className="pl-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    className="pl-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     alert
                   </th>
                   <th
                     scope="col"
-                    className="hidden sm:table-cell pl-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="hidden sm:table-cell  text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     location
                   </th>
                   <th
                     scope="col"
-                    className="hidden sm:table-cell pl-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="hidden sm:table-cell  text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     scholarship
                   </th>
                   <th
                     scope="col"
-                    className="pl-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className=" text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     view
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-gray-200 text-center">
                 {university.map((e) => (
                   <tr key={e.univeristy_id}>
-                    <td className="pl-3 md:px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900 text-center sm:text-left">
+                    <td className=" py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">
                         {e.univeristy_qsranking}
                       </div>
                     </td>
-                    <td className="pl-3 md:px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900 text-ellipsis w-52">
+                    <td className=" whitespace-nowrap">
+                      <div className="text-sm text-gray-900 text-ellipsis w-48 text-left">
                         {e.university_name}
                       </div>
                     </td>
-                    <td className="pl-3 md:px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6 cursor-pointer"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                          />
-                        </svg>
-                      </div>
+                    <td className="whitespace-nowrap">
+                      <Switch
+                        checked={enabled}
+                        onChange={() => {
+                          user ? setEnabled(!enabled) : openModal();
+                        }}
+                        className={`${enabled ? "bg-indigo-600" : "bg-gray-200"}
+          relative inline-flex flex-shrink-0 h-[26px] w-[46px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                      >
+                        <span className="sr-only">Use setting</span>
+                        <span
+                          onClick={() => {
+                            user ? console.log("nce") : "";
+                          }}
+                          aria-hidden="true"
+                          className={`${
+                            enabled ? "translate-x-5" : "translate-x-0"
+                          }
+            pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
+                        />
+                      </Switch>
                     </td>
-                    <td className="hidden sm:table-cell pl-3 md:px-6 py-4 whitespace-nowrap">
+                    <td className="hidden sm:table-cell py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         {e.university_location}
                       </div>
                     </td>
-                    <td className="hidden sm:table-cell pl-3 md:px-6 py-4 whitespace-nowrap">
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <td className="hidden sm:table-cell py-4 whitespace-nowrap">
+                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                         {e.scholarship}
                       </span>
                     </td>
-                    <td className="pl-3 md:px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900" onClick={()=>router.push(`/find/${e.slug}`)}>
+                    <td className="whitespace-nowrap mx-auto">
+                      <div
+                        className="text-sm text-gray-900  flex justify-center"
+                        onClick={() => router.push(`/find/${e.slug}`)}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6 cursor-pointer"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
+                          className="h-5 w-5 hover:scale-125 cursor-pointer"
+                          viewBox="0 0 20 20"
+                          fill="#4f46e5"
                         >
+                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                           <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                            fillRule="evenodd"
+                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                            clipRule="evenodd"
                           />
                         </svg>
                       </div>
@@ -121,6 +132,76 @@ function ls({ university }) {
           </div>
         </div>
       </div>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-10 overflow-y-auto backdrop-blur-sm "
+          onClose={closeModal}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog.Overlay className="fixed inset-0" />
+            </Transition.Child>
+
+            {/* This element is to trick the browser into centering the modal contents. */}
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
+              &#8203;
+            </span>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-gray-900"
+                >
+                  Login First
+                </Dialog.Title>
+                <div className="mt-2">
+                  <p className="text-sm text-gray-500">
+                    You need to login first in order to get notification for
+                    university exams
+                  </p>
+                </div>
+
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={closeModal}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    className="ml-4 inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-700 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={() => router.push(`/login`)}
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition>
     </div>
   );
 }

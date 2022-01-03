@@ -4,7 +4,7 @@ import Footer from './Footer'
 import Head from 'next/head'
 function Layout({ title,description, keywords, children }) {
     return (
-        <div>
+        <div className='select-none h-screen overflow-scroll scrollbar scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-white scrollbar-thumb-rounded-full'>
             <Head>
                 <title>{title}</title>
                 <meta name='description' content={description} />
