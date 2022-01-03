@@ -1,12 +1,64 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Layout from "../component/Layout";
 import { Tab } from "@headlessui/react";
-
+import { userContext } from "../component/filters/states";
+import { useRouter } from "next/router";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function Login() {
+  const [message, setMessage] = useState(null);
+  const { user, setUser } = useContext(userContext);
+  const router = useRouter();
+  const [inputs, setInputs] = React.useState({});
+  const register = async (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3001/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputs),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.msg == "Duplicate") setMessage("Email already used");
+        else {
+          setUser(data);
+          router.push("/");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const login = async (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3001/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputs),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.msg == "Wrong") setMessage("Wrong Credentials");
+        else {
+          setUser(data);
+          router.push("/");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
   return (
     <Layout>
       <div className=" bg-white flex justify-center items-center overflow-ellipsis mt-2 sm:mt-20">
@@ -14,6 +66,7 @@ function Login() {
           <Tab.Group>
             <Tab.List className="flex p-1 space-x-1 bg-indigo-600 rounded-xl">
               <Tab
+              onClick={()=>setMessage("")}
                 className={({ selected }) =>
                   classNames(
                     "w-full py-2.5 text-sm leading-5 font-medium text-white rounded-lg",
@@ -24,7 +77,7 @@ function Login() {
                   )
                 }
               >
-                Login
+              <button onMouseOver={()=>setMessage("")}>Login</button>
               </Tab>
               <Tab
                 className={({ selected }) =>
@@ -37,7 +90,7 @@ function Login() {
                   )
                 }
               >
-                Register
+             <button onMouseOver={()=>setMessage("")}>Register</button>
               </Tab>
             </Tab.List>
 
@@ -56,17 +109,27 @@ function Login() {
                 <div className="space-y-3">
                   <input
                     type="text"
-                    placeholder="Email Addres"
+                    placeholder="Email"
                     className="block py-3 px-4 rounded-lg w-full border outline-none"
+                    name="email"
+                    value={inputs.email || ""}
+                    onChange={handleChange}
                   />
                   <input
                     type="password"
                     placeholder="Password"
-                    className="block py-3 px-4 rounded-lg w-full border outline-none"
+                    name="password"
+                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    value={inputs.password || ""}
+                    onChange={handleChange}
                   />
                 </div>
+                <p className=" text-center text-red-600 pt-3">{message}</p>
                 <div className="text-center mt-6">
-                  <button className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl">
+                  <button
+                    className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl"
+                    onClick={login}
+                  >
                     Login
                   </button>
                 </div>
@@ -86,36 +149,51 @@ function Login() {
                   <input
                     type="text"
                     placeholder="Full Name"
-                    className="block py-3 px-4 rounded-lg w-full border outline-none" required
+                    className="block py-3 px-4 rounded-lg w-full border outline-none"
+                    name="name"
+                    value={inputs.name || ""}
+                    onChange={handleChange}
                   />
                   <input
                     type="text"
-                    placeholder="ID"
+                    placeholder="Email"
                     className="block py-3 px-4 rounded-lg w-full border outline-none"
+                    name="email"
+                    value={inputs.email || ""}
+                    onChange={handleChange}
                   />
                   <input
                     type="text"
-                    placeholder="Email Addres"
+                    placeholder="School"
                     className="block py-3 px-4 rounded-lg w-full border outline-none"
-                  />
-                  <input
-                    type="text"
-                    placeholder="High School"
-                    className="block py-3 px-4 rounded-lg w-full border outline-none"
+                    name="school"
+                    value={inputs.school || ""}
+                    onChange={handleChange}
                   />
                   <input
                     type="text"
                     placeholder="Phone"
                     className="block py-3 px-4 rounded-lg w-full border outline-none"
+                    name="phone"
+                    value={inputs.phone || ""}
+                    onChange={handleChange}
                   />
                   <input
                     type="password"
                     placeholder="Password"
+                    name="password"
                     className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    value={inputs.password || ""}
+                    onChange={handleChange}
                   />
                 </div>
+                <p className=" text-center text-red-600 pt-3">{message}</p>
                 <div className="text-center mt-6">
-                  <button className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl" type="submit">
+                  <button
+                    className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl"
+                    type="submit"
+                    onClick={register}
+                  >
                     Register
                   </button>
                 </div>

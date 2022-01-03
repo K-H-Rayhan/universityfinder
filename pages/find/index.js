@@ -12,9 +12,26 @@ import {
   departmentContext,
 } from "../../component/filters/states";
 import Listedbox2 from "../../component/small/Listedbox2";
-function Index({universities}) {
+function Index({ universities }) {
   const [selected, setSelected] = useState(location[0]);
   const [selected2, setSelected2] = useState(departments[0]);
+  const [gpa, setGpa] = useState({});
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setGpa((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    console.log(selected);
+    console.log(selected2);
+    console.log(gpa);
+    const universityRes = await fetch(`http://localhost:3001/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`);
+    const universities = await universityRes.json();
+  };
   return (
     <departmentContext.Provider value={{ selected2, setSelected2 }}>
       <locationContext.Provider value={{ selected, setSelected }}>
@@ -22,7 +39,7 @@ function Index({universities}) {
           <div className="m-5 place-content-between gap-y-2 grid grid-cols-2 lg:grid-cols-4 gap-x-2">
             <div className=" flex flex-col items-center">
               <label
-                htmlFor="price"
+                htmlFor="gpa"
                 className=" text-sm font-medium text-gray-700 "
               >
                 GPA
@@ -30,17 +47,19 @@ function Index({universities}) {
               <div className="mt-1 relative rounded-md  m-1 flex flex-row">
                 <input
                   type="text"
-                  name="price"
-                  id="price"
+                  name="sscgpa"
+                  id="sscgpa"
                   className="border-0 pl-7 sm:text-sm  shadow-md rounded-tl-md rounded-bl-md outline-none h-10 flex w-20 items-center inset-y-0"
                   placeholder="SSC"
+                  onChange={handleChange}
                 />
                 <input
                   type="text"
-                  name="price"
-                  id="price"
+                  name="hscgpa"
+                  id="hscgpa"
                   className=" border-0 pl-7 sm:text-sm rounded-tr-md rounded-br-md shadow-md outline-none h-10 flex w-20 items-center inset-y-0"
                   placeholder="HSC"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -51,7 +70,10 @@ function Index({universities}) {
               <Listedbox2 location={departments} />
             </div>
             <div className=" flex items-center justify-center ">
-              <span className="inline-block text-center bg-indigo-600 border border-transparent rounded-3xl py-3 px-8 font-medium text-white hover:bg-indigo-700 cursor-pointer">
+              <span
+                className="inline-block text-center bg-indigo-600 border border-transparent rounded-3xl py-3 px-8 font-medium text-white hover:bg-indigo-700 cursor-pointer"
+                onClick={handleSubmit}
+              >
                 Filter
               </span>
             </div>
@@ -74,12 +96,10 @@ export async function getServerSideProps() {
   // const total = await totalRes.json()
 
   // Fetch events
-  const universityRes = await fetch(
-    `http://localhost:3001/api/find/`
-  )
-  const universities = await universityRes.json()
-    // console.log(universities);
+  const universityRes = await fetch(`http://localhost:3001/api/find/`);
+  const universities = await universityRes.json();
+  // console.log(universities);
   return {
     props: { universities: universities },
-  }
+  };
 }
