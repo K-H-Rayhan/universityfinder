@@ -10,48 +10,27 @@ export default function EventPage({ university }) {
   university = university[0];
   return (
     <Layout>
-      <div className="pt-6">
-        <div className="max-w-2xl mx-auto sm:pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl  lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
-          <div className="lg:col-span-3  lg:pr-8">
-            <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-              {university.university_name}
-            </h1>
-          </div>
-          <div className="py-4 sm:py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-3 lg:pr-8">
-            <div>
-              <h3 className="sr-only">Description</h3>
-              <div className="space-y-6">
-                <p className="text-base text-gray-900">
-                  {university.university_description}
-                </p>
-              </div>
-            </div>
-            <div className="mt-10">
-              <h3 className="text-md font-bold text-gray-900">Location</h3>
-
-              <div className="mt-4">
-                {university.university_location}, Bangladesh
-              </div>
-            </div>
-            <div className="mt-10">
-              <h2 className="text-md font-bold text-gray-900">Ranking</h2>
-              <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">
-                  QS Ranking: {university.univeristy_qsranking}
-                </p>
-              </div>
-            </div>
-            <div className="mt-10">
-              <h2 className="text-md font-bold text-gray-900">Admission Requirments</h2>
-              <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">
-                Combined GPA of {university.university_total} in both SSC and HSC with minimum GPA {university.university_hsc} in each
-
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="pt-6 p-4 sm:p-8  max-w-7xl mx-auto">
+        <h1 className="text-2xl  font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+          {university.university_name}
+        </h1>
+        <h3 className="sr-only">Description</h3>
+        <p className="text-base text-gray-900 pt-6">
+          {university.university_description}
+        </p>
+        <h3 className="text-md font-bold text-gray-900 pt-6">Location</h3>
+        {university.university_location}, Bangladesh
+        <h2 className="text-md font-bold text-gray-900 pt-6">Ranking</h2>
+        <p className="text-sm text-gray-600">
+          QS Ranking: {university.univeristy_qsranking}
+        </p>
+        <h2 className="text-md font-bold text-gray-900 pt-6">
+          Admission Requirments
+        </h2>
+        <p className="text-sm text-gray-600">
+          Combined GPA of {university.university_total} in both SSC and HSC with
+          minimum GPA {university.university_hsc} in each
+        </p>
       </div>
     </Layout>
   );
