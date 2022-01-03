@@ -9,20 +9,22 @@ module.exports = {
     extend: {
       colors: {
         custom: {
-          "DEFAULT": "#5551ff",
+          DEFAULT: "#5551ff",
         },
       },
       margin: {
         "3px": "2px",
       },
       spacing: {
-        '2px': '2px',
-      }
+        "2px": "2px",
+      },
     },
   },
   variants: {
     extend: {},
-    scrollbar: ["rounded"],
+    scrollbar: ['rounded']
   },
-  plugins: [require("tailwind-scrollbar")],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 };

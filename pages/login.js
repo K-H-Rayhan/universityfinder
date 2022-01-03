@@ -53,16 +53,16 @@ function Login() {
                     Login to your account to enjoy all the features
                   </p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <input
                     type="text"
                     placeholder="Email Addres"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    className="block py-3 px-4 rounded-lg w-full border outline-none"
                   />
                   <input
                     type="password"
                     placeholder="Password"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    className="block py-3 px-4 rounded-lg w-full border outline-none"
                   />
                 </div>
                 <div className="text-center mt-6">
@@ -82,31 +82,31 @@ function Login() {
                     Create an account to enjoy all the features
                   </p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <input
                     type="text"
                     placeholder="Full Name"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" required
+                    className="block py-3 px-4 rounded-lg w-full border outline-none" required
                   />
                   <input
                     type="text"
                     placeholder="ID"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    className="block py-3 px-4 rounded-lg w-full border outline-none"
                   />
                   <input
                     type="text"
                     placeholder="Email Addres"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    className="block py-3 px-4 rounded-lg w-full border outline-none"
                   />
                   <input
                     type="text"
                     placeholder="High School"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    className="block py-3 px-4 rounded-lg w-full border outline-none"
                   />
                   <input
                     type="text"
                     placeholder="Phone"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    className="block py-3 px-4 rounded-lg w-full border outline-none"
                   />
                   <input
                     type="password"
