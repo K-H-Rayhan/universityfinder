@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
-function admin() {
+function Admin() {
   const router = useRouter();
   const userAdmin = true;
   useEffect(() => {
@@ -13,4 +13,4 @@ function admin() {
   return userAdmin ? "" : "";
 }
 
-export default admin;
+export default Admin;
