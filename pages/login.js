@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function login() {
+function Login() {
   return (
     <Layout>
       <div className=" bg-white flex justify-center items-center overflow-ellipsis mt-2 sm:mt-20">
@@ -129,4 +129,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
