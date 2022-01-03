@@ -86,7 +86,7 @@ function Login() {
                   <input
                     type="text"
                     placeholder="Full Name"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
+                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" required
                   />
                   <input
                     type="text"
@@ -115,7 +115,7 @@ function Login() {
                   />
                 </div>
                 <div className="text-center mt-6">
-                  <button className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl">
+                  <button className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl" type="submit">
                     Register
                   </button>
                 </div>

@@ -163,7 +163,7 @@ export default function Header() {
                       router.pathname == "/login"
                         ? " text-indigo-600"
                         : "text-black ",
-                      "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight flex flex-row"
+                      " text-sm font-bold tracking-tight flex flex-row absolute right-1"
                     )}
                   >
                     Login&nbsp;
