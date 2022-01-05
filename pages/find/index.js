@@ -24,12 +24,11 @@ function Index({ universities }) {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selected);
-    console.log(selected2);
-    console.log(gpa);
-    const universityRes = await fetch(`http://localhost:3001/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`);
+    const universityRes = await fetch(
+      `http://localhost:3001/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`
+    );
     const universities = await universityRes.json();
   };
   return (
@@ -98,7 +97,6 @@ export async function getServerSideProps() {
   // Fetch events
   const universityRes = await fetch(`http://localhost:3001/api/find/`);
   const universities = await universityRes.json();
-  // console.log(universities);
   return {
     props: { universities: universities },
   };

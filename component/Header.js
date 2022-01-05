@@ -14,6 +14,7 @@ export default function Header() {
   const router = useRouter();
   const { user, setUser } = useContext(userContext);
   const signOut = () => {
+    localStorage.clear();
     setUser(null);
     router.push("/login");
   };
@@ -95,6 +96,36 @@ export default function Header() {
                     ) : (
                       ""
                     )}
+                    {user != null && user.user.role == "admin" ? (
+                      <Link href="/admin">
+                        <a
+                          className={classNames(
+                            router.pathname == "/admin"
+                              ? " text-indigo-600"
+                              : "text-black ",
+                            "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight flex flex-row"
+                          )}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+                            />
+                          </svg>
+                          Admin
+                        </a>
+                      </Link>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
               </div>
@@ -114,22 +145,13 @@ export default function Header() {
                   {/* Profile dropdown */}
                   <Menu as="div" className="ml-3 relative">
                     <div>
-                      <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-offset-gray-800 ">
+                      <Menu.Button className=" flex text-sm rounded-full focus:outline-none ">
                         <span className="sr-only">Open user menu</span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-7 w-7 bg-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
+                        <img
+                          src="/images/undraw_profile_pic_ic-5-t.svg"
+                          alt="Kamrul Hasan Rayhan"
+                          className="rounded-full  w-7 h-7"
+                        />
                       </Menu.Button>
                     </div>
                     <Transition
@@ -242,12 +264,12 @@ export default function Header() {
                   key={item.name}
                 >
                   <Link href={item.href}>
-                    <a>
+                    <span>
                       {item.name}
                       {"/" + item.name.toLowerCase() == router.pathname
                         ? (item.current = true)
                         : (item.current = false)}
-                    </a>
+                    </span>
                   </Link>
                 </Disclosure.Button>
               ))}

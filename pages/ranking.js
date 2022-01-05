@@ -23,7 +23,6 @@ export async function getServerSideProps() {
   // Fetch events
   const universityRes = await fetch(`http://localhost:3001/api/find/`);
   const universities = await universityRes.json();
-  // console.log(universities);
   return {
     props: { universities: universities },
   };

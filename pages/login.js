@@ -11,8 +11,8 @@ function Login() {
   const [message, setMessage] = useState(null);
   const { user, setUser } = useContext(userContext);
   const router = useRouter();
-  const [inputs, setInputs] = React.useState({});
-  const register = async (e) => {
+  const [inputs, setInputs] = useState({});
+  const register = (e) => {
     e.preventDefault();
     fetch("http://localhost:3001/api/register", {
       method: "POST",
@@ -33,7 +33,7 @@ function Login() {
         console.error("Error:", error);
       });
   };
-  const login = async (e) => {
+  const login = (e) => {
     e.preventDefault();
     fetch("http://localhost:3001/api/login", {
       method: "POST",
@@ -47,6 +47,12 @@ function Login() {
         if (data.msg == "Wrong") setMessage("Wrong Credentials");
         else {
           setUser(data);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("name", data.user.name);
+          localStorage.setItem("email", data.user.email);
+          localStorage.setItem("phone", data.user.phone);
+          localStorage.setItem("role", data.user.role);
+          localStorage.setItem("school", data.user.school);
           router.push("/");
         }
       })
@@ -66,10 +72,9 @@ function Login() {
           <Tab.Group>
             <Tab.List className="flex p-1 space-x-1 bg-indigo-600 rounded-xl">
               <Tab
-              onClick={()=>setMessage("")}
                 className={({ selected }) =>
                   classNames(
-                    "w-full py-2.5 text-sm leading-5 font-medium text-white rounded-lg",
+                    "w-1/2 py-2.5 text-sm leading-5 font-medium text-white rounded-lg",
                     "focus:outline-none",
                     selected
                       ? "bg-white shadow text-black"
@@ -77,12 +82,12 @@ function Login() {
                   )
                 }
               >
-              <button onMouseOver={()=>setMessage("")}>Login</button>
+                Login
               </Tab>
               <Tab
                 className={({ selected }) =>
                   classNames(
-                    "w-full py-2.5 text-sm leading-5 font-medium text-white rounded-lg",
+                    "w-1/2 py-2.5 text-sm leading-5 font-medium text-white rounded-lg text-center",
                     "focus:outline-none ",
                     selected
                       ? "bg-white shadow text-black"
@@ -90,7 +95,7 @@ function Login() {
                   )
                 }
               >
-             <button onMouseOver={()=>setMessage("")}>Register</button>
+                Register
               </Tab>
             </Tab.List>
 
@@ -101,38 +106,41 @@ function Login() {
                   "focus:outline-none "
                 )}
               >
-                <div>
-                  <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">
-                    Login to your account to enjoy all the features
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    className="block py-3 px-4 rounded-lg w-full border outline-none"
-                    name="email"
-                    value={inputs.email || ""}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
-                    value={inputs.password || ""}
-                    onChange={handleChange}
-                  />
-                </div>
-                <p className=" text-center text-red-600 pt-3">{message}</p>
-                <div className="text-center mt-6">
-                  <button
-                    className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl"
-                    onClick={login}
-                  >
-                    Login
-                  </button>
-                </div>
+                <form>
+                  <div>
+                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">
+                      Login to your account to enjoy all the features
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      className="block py-3 px-4 rounded-lg w-full border outline-none"
+                      name="email"
+                      value={inputs.email || ""}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      className="block py-3 px-4 rounded-lg w-full border outline-none"
+                      value={inputs.password || ""}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <p className=" text-center text-red-600 pt-3">{message}</p>
+                  <div className="text-center mt-6">
+                    <input
+                      className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl"
+                      type="submit"
+                      value="submit"
+                      onClick={login}
+                    />
+                  </div>
+                </form>
               </Tab.Panel>
               <Tab.Panel
                 className={classNames(
@@ -145,58 +153,59 @@ function Login() {
                     Create an account to enjoy all the features
                   </p>
                 </div>
-                <div className="space-y-3">
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    className="block py-3 px-4 rounded-lg w-full border outline-none"
-                    name="name"
-                    value={inputs.name || ""}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    className="block py-3 px-4 rounded-lg w-full border outline-none"
-                    name="email"
-                    value={inputs.email || ""}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    placeholder="School"
-                    className="block py-3 px-4 rounded-lg w-full border outline-none"
-                    name="school"
-                    value={inputs.school || ""}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Phone"
-                    className="block py-3 px-4 rounded-lg w-full border outline-none"
-                    name="phone"
-                    value={inputs.phone || ""}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
-                    value={inputs.password || ""}
-                    onChange={handleChange}
-                  />
-                </div>
-                <p className=" text-center text-red-600 pt-3">{message}</p>
-                <div className="text-center mt-6">
-                  <button
-                    className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl"
-                    type="submit"
-                    onClick={register}
-                  >
-                    Register
-                  </button>
-                </div>
+                <form>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      className="block py-3 px-4 rounded-lg w-full border outline-none"
+                      name="name"
+                      value={inputs.name || ""}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      className="block py-3 px-4 rounded-lg w-full border outline-none"
+                      name="email"
+                      value={inputs.email || ""}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="text"
+                      placeholder="School"
+                      className="block py-3 px-4 rounded-lg w-full border outline-none"
+                      name="school"
+                      value={inputs.school || ""}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Phone"
+                      className="block py-3 px-4 rounded-lg w-full border outline-none"
+                      name="phone"
+                      value={inputs.phone || ""}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      className="block py-3 px-4 rounded-lg w-full border outline-none"
+                      value={inputs.password || ""}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <p className=" text-center text-red-600 pt-3">{message}</p>
+                  <div className="text-center mt-6">
+                    <input
+                      className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl"
+                      type="submit"
+                      value="submit"
+                      onClick={register}
+                    />
+                  </div>
+                </form>
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>

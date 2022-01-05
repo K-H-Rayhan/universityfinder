@@ -1,92 +1,80 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
-
-export default function MyModal() {
-  let [isOpen, setIsOpen] = useState(true)
-
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function openModal() {
-    setIsOpen(true)
-  }
+import { useState } from "react";
+import { useRouter } from "next/router";
+export default function contact() {
+  const inputDesign =
+    " text-lg font-semibold focus:ring-1 focus:ring-green-400 outline-none rounded-md h-12 border-2 border-gray-300 focus:border-green-400 p-2 md:mb-0 mb-3";
+  const [inputs, setInputs] = useState({});
+  const [msg, setMsg] = useState("");
+  const done = async (e) => {
+    const data = await fetch("http://localhost:3001/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputs),
+    });
+    const res = await data.json();
+    setMsg(res.token)
+  };
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+  const router = useRouter();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
   return (
-    <>
-      <div className="fixed inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Open dialog
-        </button>
+    <div className="w-full h-screen grid grid-rows-5 md:grid-cols-2 mt-16 md:mt-0 items-center justify-center justify-items-center">
+      <div className="md:text-6xl text-4xl font-extrabold flex-wrap text-green-400 mx-5 md:row-start-2 ">
+        Contact Me{msg}
+        <hr className="mt-3 w-16 h-2 bg-green-400 rounded-full " />
+        <div className=" bg-fixed bg-contactBg w-full"></div>
       </div>
 
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+      <div className="flex items-center justify-center w-full row-span-3 row-start-2">
+        <form
+          className=" flex flex-col w-full p-2 md:p-10 md:gap-5"
+          onSubmit={handleSubmit}
         >
-          <div className="min-h-screen px-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+          <input
+            type="text"
+            name="email"
+            value={inputs.email || ""}
+            onChange={handleChange}
+            className={inputDesign}
+            placeholder="Name"
+            required
+          />
+          <input
+            type="text"
+            name="password"
+            value={inputs.password || ""}
+            onChange={handleChange}
+            className={inputDesign}
+            placeholder="Email"
+            required
+          />
+          <div className="self-center mt-6">
+            <button
+              type="submit"
+              className="bg-green-400 hover:bg-green-500 text-sm text-white font-bold py-6 px-12 rounded-full tracking-widest transform duration-500 hover:-translate-y-4 mt-3 mb-10"
+              onClick={done}
             >
-              <Dialog.Overlay className="fixed inset-0" />
-            </Transition.Child>
-
-            {/* This element is to trick the browser into centering the modal contents. */}
-            <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
-                  Payment successful
-                </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent you
-                    an email with all of the details of your order.
-                  </p>
-                </div>
-
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
-                  >
-                    Got it, thanks!
-                  </button>
-                </div>
-              </div>
-            </Transition.Child>
+              Submit
+            </button>
           </div>
-        </Dialog>
-      </Transition>
-    </>
-  )
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export async function getStaticProps(context) {
+  const res = fetch("https://khrayhan.me/api/contact");
+  return {
+    props: {}, // will be passed to the page component as props
+  };
 }
