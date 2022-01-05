@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-export default function contact() {
+export default function Contact() {
   const inputDesign =
     " text-lg font-semibold focus:ring-1 focus:ring-green-400 outline-none rounded-md h-12 border-2 border-gray-300 focus:border-green-400 p-2 md:mb-0 mb-3";
   const [inputs, setInputs] = useState({});
