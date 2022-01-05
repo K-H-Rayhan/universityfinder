@@ -4,7 +4,7 @@ import { userContext } from "../component/filters/states";
 import Layout from "../component/Layout";
 import { Tab } from "@headlessui/react";
 import AdminUniversity from "../component/small/AdminUniversity";
-import AdminUser from "../component/small/adminUser";
+import AdminUser from "../component/small/AdminUser";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
