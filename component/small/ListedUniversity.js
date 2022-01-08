@@ -126,7 +126,7 @@ function ls({ university }) {
                       </div>
                     </td>
                   </tr>
-                )):""}
+                )):null}
               </tbody>
             </table>
           </div>

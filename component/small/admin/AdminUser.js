@@ -38,13 +38,13 @@ function AdminUser({ university }) {
               <tbody className="bg-white divide-y divide-gray-200 text-center">
                 {university.map((e) => (
                   <tr key={e.univeristy_id}>
-                    <td className=" whitespace-nowrap py-2">
+                    <td className="py-2">
                       <div className="text-sm text-gray-900 text-ellipsis text-left px-8">
                         {e.university_name}
                       </div>
                     </td>
 
-                    <td className="whitespace-nowrap focus:outline-none">
+                    <td className="focus:outline-none">
                       <select>
                         {/* value={optionsState} */}
                         <option value="A">Admin</option>
