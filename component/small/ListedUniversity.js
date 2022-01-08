@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { Switch, Dialog, Transition } from "@headlessui/react";
 import { Fragment, useContext, useState } from "react";
-import { userContext } from '../filters/states';
+import { userContext } from "../filters/states";
 function ls({ university }) {
   let [isOpen, setIsOpen] = useState(false);
   const [enabled, setEnabled] = useState(false);
   const router = useRouter();
-  const { user } = useContext(userContext)
+  const { user } = useContext(userContext);
   function closeModal() {
     setIsOpen(false);
   }
@@ -14,6 +14,7 @@ function ls({ university }) {
   function openModal() {
     setIsOpen(true);
   }
+  console.log();
   return (
     <div className="flex flex-col">
       <div className=" overflow-x-auto">
@@ -61,7 +62,7 @@ function ls({ university }) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 text-center">
-                {university.map((e) => (
+                {university.length != undefined ? university.map((e) => (
                   <tr key={e.univeristy_id}>
                     <td className=" py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
@@ -69,13 +70,15 @@ function ls({ university }) {
                       </div>
                     </td>
                     <td className=" whitespace-nowrap">
-                      <div className="text-sm text-gray-900 text-ellipsis w-48 text-left cursor-pointer"  onClick={() => router.push(`/find/${e.slug}`)}>
+                      <div
+                        className="text-sm text-gray-900 text-ellipsis w-48 text-left cursor-pointer"
+                        onClick={() => router.push(`/find/${e.slug}`)}
+                      >
                         {e.university_name}
                       </div>
                     </td>
                     <td className="whitespace-nowrap">
                       <Switch
-                        checked={enabled}
                         onChange={() => {
                           user ? setEnabled(!enabled) : openModal();
                         }}
@@ -123,7 +126,7 @@ function ls({ university }) {
                       </div>
                     </td>
                   </tr>
-                ))}
+                )):""}
               </tbody>
             </table>
           </div>

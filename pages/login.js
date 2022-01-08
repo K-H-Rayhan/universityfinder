@@ -25,6 +25,12 @@ function Login() {
       .then((data) => {
         if (data.msg == "Duplicate") setMessage("Email already used");
         else {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("name", data.user.name);
+          localStorage.setItem("email", data.user.email);
+          localStorage.setItem("phone", data.user.phone);
+          localStorage.setItem("role", data.user.role);
+          localStorage.setItem("school", data.user.school);
           setUser(data);
           router.push("/");
         }

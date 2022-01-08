@@ -3,19 +3,17 @@ import React, { useContext, useEffect } from "react";
 import { userContext } from "../component/filters/states";
 import Layout from "../component/Layout";
 import { Tab } from "@headlessui/react";
-import AdminUniversity from "../component/small/AdminUniversity";
-import AdminUser from "../component/small/AdminUser";
+import AdminUniversity from "../component/small/admin/AdminUniversity";
+import AdminUser from "../component/small/admin/AdminUser";
+import AdminForum from "../component/small/admin/AdminForums";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 function Admin({ universities }) {
-  const { user } = useContext(userContext);
   const router = useRouter();
+  const { user } = useContext(userContext);
   useEffect(() => {
-    user == null ? router.push("/") : "";
-    return () => {
-      user;
-    };
+    localStorage.getItem("role") != "admin" ? router.push("/") : "";
   }, []);
   return user && user.user.role == "admin" ? (
     <Layout>
@@ -47,6 +45,19 @@ function Admin({ universities }) {
                   )
                 }
               >
+                Forums
+              </Tab>
+              <Tab
+                className={({ selected }) =>
+                  classNames(
+                    "w-full py-2.5 text-sm leading-5 font-medium text-white rounded-lg px-4",
+                    "focus:outline-none",
+                    selected
+                      ? "bg-white shadow text-black"
+                      : "text-white hover:bg-indigo-600 hover:text-white"
+                  )
+                }
+              >
                 Users
               </Tab>
             </Tab.List>
@@ -59,6 +70,14 @@ function Admin({ universities }) {
                 )}
               >
                 <AdminUniversity university={universities} />
+              </Tab.Panel>
+              <Tab.Panel
+                className={classNames(
+                  "bg-white rounded-xl p-3",
+                  "focus:outline-none "
+                )}
+              >
+                <AdminForum university={universities} />
               </Tab.Panel>
               <Tab.Panel
                 className={classNames(

@@ -1,9 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { PaperClipIcon } from "@heroicons/react/solid";
 import Layout from "../component/Layout";
 import { userContext } from "../component/filters/states";
+import { useRouter } from "next/router";
 function Profile() {
+  const router = useRouter()
   const { user } = useContext(userContext);
+  useEffect(() => {
+    localStorage.getItem("role") == null ?  router.push("/") : '';
+}, []);
   return (
     <Layout>
       {user ? (
@@ -124,9 +129,7 @@ function Profile() {
             </div>
           </div>
         </div>
-      ) : (
-        ""
-      )}
+      ) : "Login First"}
     </Layout>
   );
 }

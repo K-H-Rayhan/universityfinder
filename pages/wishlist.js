@@ -6,11 +6,8 @@ import Layout from  '../component/Layout'
 function Wishlist() {
     const { user } = useContext(userContext);
     const router = useRouter();
-  useEffect(() => {
-    user==null ? router.push("/") : "";
-    return () => {
-        user;
-    };
+    useEffect(() => {
+      localStorage.getItem("role") == null ?  router.push("/") : '';
   }, []);
     return user ? <Layout>Wishlist</Layout> : "";
 }

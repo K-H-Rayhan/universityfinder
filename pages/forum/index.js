@@ -32,6 +32,15 @@ const forums = [
 export default function Forum() {
   const { user } = useContext(userContext);
   let [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState({});
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    setInput((prev) => ({ ...prev, [name]: e.target.value }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   function closeModal() {
     setIsOpen(false);
@@ -94,22 +103,42 @@ export default function Forum() {
                       as="h3"
                       className="text-lg font-medium leading-6 text-gray-900"
                     >
-                      Payment successful
+                      <label>
+                        Post Title:
+                        <br />
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Title"
+                        className="block py-3 px-4 rounded-lg w-full border outline-none my-2"
+                        autoComplete="off"
+                        name="title"
+                        value={input.title || ""}
+                        onChange={handleChange}
+                      />
                     </Dialog.Title>
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                        Your payment has been successfully submitted. We’ve sent
-                        you an email with all of the details of your order.
-                      </p>
-                    </div>
+                    <label>
+                      Post Details:
+                      <br />
+                    </label>
+                    <textarea
+                      type="text"
+                      placeholder="Details"
+                      className="block py-3 px-4 rounded-lg w-full border outline-none my-2"
+                      autoComplete="off"
+                      rows={7}
+                      name="details"
+                      value={input.details || ""}
+                      onChange={handleChange}
+                    />
 
                     <div className="mt-4">
                       <button
                         type="button"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                        onClick={closeModal}
+                        className="inline-flex justify-center px-4 py-2 text-sm font-medium rounded-2xl bg-indigo-600 text-white"
+                        onClick={handleSubmit}
                       >
-                        Got it, thanks!
+                        Post
                       </button>
                     </div>
                   </div>

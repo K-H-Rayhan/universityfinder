@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { Switch, Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
+import { userContext } from "../../filters/states";
 function AdminUniversity({ university }) {
   let [isOpen, setIsOpen] = useState(false);
-  let [isOpen2, setIsOpen2] = useState(false);
   const router = useRouter();
   function closeModal() {
     setIsOpen(false);
@@ -13,13 +13,37 @@ function AdminUniversity({ university }) {
   function openModal() {
     setIsOpen(true);
   }
-  function closeModal2() {
-    setIsOpen2(false);
-  }
 
-  function openModal2() {
-    setIsOpen2(true);
-  }
+  const { user } = useContext(userContext);
+  const [inputs, setInputs] = useState({});
+  const Add = async (e) => {
+    e.preventDefault();
+    console.log("nice");
+    // fetch("http://localhost:3001/api/register", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(inputs),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (data.msg == "Duplicate") setMessage("Email already used");
+    //     else {
+    //       setUser(data);
+    //       router.push("/");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
+  };
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    console.log(name + value);
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
 
   return (
     <div className="flex flex-col">
@@ -70,7 +94,7 @@ function AdminUniversity({ university }) {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        onClick={()=> router.push(`/find/edit/${e.slug}`)}
+                        onClick={() => router.push(`/find/edit/${e.slug}`)}
                       >
                         <path
                           strokeLinecap="round"
@@ -180,29 +204,109 @@ function AdminUniversity({ university }) {
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-xl font-bold leading-6 text-gray-900 text-center mb-4"
                 >
-                  Add
+                  Add Univeristy
                 </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    You need to login first in order to get notification for
-                    university exams
-                  </p>
+                <div className="space-y-3 flex flex-col items-center text-sm">
+                  <label>University Name</label>
+                  <input
+                    type="text"
+                    placeholder="University Name"
+                    className="block py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    name="university_name"
+                    value={inputs.university_name || ""}
+                    onChange={handleChange}
+                  />{" "}
+                  <label>Description</label>
+                  <textarea
+                    type="text"
+                    placeholder="Description"
+                    className="block py-3 px-4 rounded-lg w-9/12 border outline-none scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-thumb-rounded"
+                    name="description"
+                    value={inputs.description || ""}
+                    onChange={handleChange}
+                    cols="30"
+                    rows="4"
+                  />{" "}
+                  <label>University Hsc</label>
+                  <input
+                    type="text"
+                    placeholder="University Hsc"
+                    className="block py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    name="university_hsc"
+                    value={inputs.university_hsc || ""}
+                    onChange={handleChange}
+                  />{" "}
+                  <label>University Location</label>
+                  <input
+                    type="text"
+                    placeholder="University Location"
+                    className="block py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    name="university_location"
+                    value={inputs.university_location || ""}
+                    onChange={handleChange}
+                  />{" "}
+                  <label>University Ssc</label>
+                  <input
+                    type="text"
+                    placeholder="University Ssc"
+                    name="university_ssc"
+                    className="block text-sm py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    value={inputs.university_ssc || ""}
+                    onChange={handleChange}
+                  />{" "}
+                  <label>University Surname</label>
+                  <input
+                    type="text"
+                    placeholder="University Surname"
+                    name="university_surname"
+                    className="block text-sm py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    value={inputs.university_surname || ""}
+                    onChange={handleChange}
+                  />{" "}
+                  <label>University Total</label>
+                  <input
+                    type="text"
+                    placeholder="University Total"
+                    name="university_total"
+                    className="block text-sm py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    value={inputs.university_total || ""}
+                    onChange={handleChange}
+                  />{" "}
+                  <label>Requirments</label>
+                  <input
+                    type="text"
+                    placeholder="Requirments"
+                    name="requirments"
+                    className="block text-sm py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    value={inputs.requirments || ""}
+                    onChange={handleChange}
+                  />
+                  <label>Slug</label>
+                  <input
+                    type="text"
+                    placeholder="Slug"
+                    name="slug"
+                    className="block text-sm py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    value={inputs.slug || ""}
+                    onChange={handleChange}
+                  />
+                  <label>Univeristy Qsranking</label>
+                  <input
+                    type="text"
+                    placeholder="Univeristy Qsranking"
+                    name="univeristy_qsranking"
+                    className="block text-sm py-3 px-4 rounded-lg  w-9/12 border outline-none"
+                    value={inputs.univeristy_qsranking || ""}
+                    onChange={handleChange}
+                  />
                 </div>
-
-                <div className="mt-4">
+                <div className="text-center mt-6 mb-6">
                   <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    className="ml-4 inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-700 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={() => router.push(`/login`)}
+                    className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl"
+                    type="submit"
+                    onClick={Add}
                   >
                     Add
                   </button>
