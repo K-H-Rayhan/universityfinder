@@ -26,7 +26,7 @@ export default function EventPage({ post }) {
 }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`http://localhost:3001/api/find/${slug}`);
+  const res = await fetch(`http://192.168.0.126:3001/api/find/${slug}`);
   const post = await res.json();
   return {
     props: {

@@ -28,7 +28,7 @@ export default function EventPage({ university }) {
 
   const update = async (e) => {
     e.preventDefault();
-    // fetch("http://localhost:3001/api/register", {
+    // fetch("http://192.168.0.126:3001/api/register", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -169,7 +169,7 @@ export default function EventPage({ university }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`http://localhost:3001/api/find/${id}`);
+  const res = await fetch(`http://192.168.0.126:3001/api/find/${id}`);
   const university = await res.json();
   return {
     props: {

@@ -6,7 +6,7 @@ export default function Contact() {
   const [inputs, setInputs] = useState({});
   const [msg, setMsg] = useState("");
   const done = async (e) => {
-    const data = await fetch("http://localhost:3001/api/login", {
+    const data = await fetch("http://192.168.0.126:3001/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

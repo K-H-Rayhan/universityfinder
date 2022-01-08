@@ -1,13 +1,21 @@
 import Layout from "../../component/Layout";
 import { useRouter } from "next/router";
 import { Switch } from "@headlessui/react";
-import React from "react";
+import React,{useEffect, useState} from "react";
 
 export default function EventPage({ university }) {
+  const [wishlists, setWishlists] = useState({});
   const router = useRouter();
-
-  const [enabled, setEnabled] = React.useState(false);
+  useEffect(async () => {
+    const email = await localStorage.getItem("email");
+    const wishlistRes = await fetch(
+      `http://192.168.0.126:3001/api/wishlist?user_mail=${email}`
+    );
+    const wishlist = await wishlistRes.json();
+    setWishlists(wishlist);
+  }, []);
   university = university[0];
+
   return (
     <Layout>
       <div className="sm:pt-6 px-4 sm:p-8  max-w-7xl mx-auto">
@@ -17,7 +25,7 @@ export default function EventPage({ university }) {
         <p className="text-base text-gray-900 pt-6">
           {university.university_description}
         </p>
-        <div className="flex flex-row justify-between py-4 mt-5">
+        {/* <div className="flex flex-row justify-between py-4 mt-5">
           <h2 className="text-md font-bold text-gray-900  flex tracking-tight self-center">
             Exam Notificaiton&nbsp;
             <svg
@@ -35,22 +43,8 @@ export default function EventPage({ university }) {
               />
             </svg>
           </h2>
-          <p className="">
-            <Switch
-              checked={enabled}
-              onChange={setEnabled}
-              className={`${enabled ? "bg-indigo-600" : "bg-gray-200"}
-          relative inline-flex flex-shrink-0 h-[38px] w-[74px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
-            >
-              <span className="sr-only">Use setting</span>
-              <span
-                aria-hidden="true"
-                className={`${enabled ? "translate-x-9" : "translate-x-0"}
-            pointer-events-none inline-block h-[34px] w-[34px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
-              />
-            </Switch>
-          </p>
-        </div>
+            {console.log(wishlists)}
+        </div> */}
         <div className="flex flex-row justify-between  py-4">
           <h3 className="text-md font-bold text-gray-900 flex tracking-tight">
             Location&nbsp;
@@ -157,7 +151,7 @@ export default function EventPage({ university }) {
 // }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`http://localhost:3001/api/find/${slug}`);
+  const res = await fetch(`http://192.168.0.126:3001/api/find/${slug}`);
   const university = await res.json();
   return {
     props: {

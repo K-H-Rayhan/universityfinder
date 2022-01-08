@@ -28,7 +28,7 @@ function Index() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const universityRes = await fetch(
-      `http://localhost:3001/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`
+      `http://192.168.0.126:3001/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`
     );
     const university = await universityRes.json();
     setUniversities(university);
@@ -91,8 +91,6 @@ function Index() {
 
 export default Index;
 
-
-
 export async function getServerSideProps() {
   // // Calculate start page
   // const start = +page === 1 ? 0 : (+page - 1) * PER_PAGE
@@ -102,7 +100,7 @@ export async function getServerSideProps() {
   // const total = await totalRes.json()
 
   // Fetch events
-  const universityRes = await fetch(`http://localhost:3001/api/find/`);
+  const universityRes = await fetch(`http://192.168.0.126:3001/api/find/`);
   const universities = await universityRes.json();
   return {
     props: { universities: universities },

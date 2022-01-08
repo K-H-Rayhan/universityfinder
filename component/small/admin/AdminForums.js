@@ -19,7 +19,7 @@ function AdminUniversity({ university }) {
   const Add = async (e) => {
     e.preventDefault();
     console.log("nice");
-    // fetch("http://localhost:3001/api/register", {
+    // fetch("http://192.168.0.126:3001/api/register", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
