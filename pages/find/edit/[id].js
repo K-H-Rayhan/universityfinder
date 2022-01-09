@@ -14,6 +14,7 @@ export default function EventPage({ university }) {
   }, []);
   university = university[0];
   const [inputs, setInputs] = useState({
+    univeristy_id: university.univeristy_id,
     university_name: university.university_name,
     description: university.university_description,
     university_hsc: university.university_hsc,
@@ -28,24 +29,15 @@ export default function EventPage({ university }) {
 
   const update = async (e) => {
     e.preventDefault();
-    // fetch("http://192.168.0.126:3001/api/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(inputs),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.msg == "Duplicate") setMessage("Email already used");
-    //     else {
-    //       setUser(data);
-    //       router.push("/");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+    fetch("http://192.168.0.126:3001/api/admin/universities", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputs),
+    }).catch((error) => {
+        console.error("Error:", error);
+      });
   };
   const handleChange = (event) => {
     const name = event.target.name;
@@ -125,11 +117,11 @@ export default function EventPage({ university }) {
           value={inputs.university_total || ""}
           onChange={handleChange}
         />{" "}
-        <label>Requirments</label>
+        <label>Scholarship</label>
         <input
           type="text"
-          placeholder="Requirments"
-          name="requirments"
+          placeholder="Scholarship"
+          name="scholarship"
           className="block text-sm py-3 px-4 rounded-lg  w-9/12 border outline-none"
           value={inputs.scholarship || ""}
           onChange={handleChange}

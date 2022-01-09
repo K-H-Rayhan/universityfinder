@@ -1,11 +1,14 @@
 import Layout from "../../component/Layout";
 import { useRouter } from "next/router";
 import { Switch } from "@headlessui/react";
-import React,{useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { userContext } from "../../component/filters/states";
 
 export default function EventPage({ university }) {
   const [wishlists, setWishlists] = useState({});
   const router = useRouter();
+  const [dataUpdated, setdataUpdated] = useState();
+  const { user } = useContext(userContext);
   useEffect(async () => {
     const email = await localStorage.getItem("email");
     const wishlistRes = await fetch(
@@ -16,6 +19,66 @@ export default function EventPage({ university }) {
   }, []);
   university = university[0];
 
+  useEffect(async () => {
+    const email = await localStorage.getItem("email");
+    const wishlistRes = await fetch(
+      `http://192.168.0.126:3001/api/wishlist?user_mail=${email}`
+    );
+    const wishlist = await wishlistRes.json();
+    setWishlists(wishlist);
+  }, [dataUpdated]);
+
+  const addWishlist = async (univeristy_id) => {
+    const user_mail = user.user.email;
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const universityRes = await fetch(
+        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&univeristy_id=${univeristy_id}`,
+        settings
+      );
+      const university = await universityRes.json();
+      setdataUpdated(Math.random());
+      return data;
+    } catch (e) {
+      return e;
+    }
+  };
+  const deleteWishlist = async (univeristy_id) => {
+    console.log(user.user.email);
+    const user_mail = user.user.email;
+    const settings = {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const universityRes = await fetch(
+        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&univeristy_id=${univeristy_id}`,
+        settings
+      );
+      const university = await universityRes.json();
+      setdataUpdated(Math.random());
+      return data;
+    } catch (e) {
+      return e;
+    }
+  };
+
+  const found = () => {
+    for (let i = 0; i < wishlists.length; i++)
+      if (wishlists[i].univeristy_id == university.univeristy_id) {
+        return true;
+      }
+  };
+
   return (
     <Layout>
       <div className="sm:pt-6 px-4 sm:p-8  max-w-7xl mx-auto">
@@ -25,7 +88,7 @@ export default function EventPage({ university }) {
         <p className="text-base text-gray-900 pt-6">
           {university.university_description}
         </p>
-        {/* <div className="flex flex-row justify-between py-4 mt-5">
+        <div className="flex flex-row justify-between py-4 mt-5">
           <h2 className="text-md font-bold text-gray-900  flex tracking-tight self-center">
             Exam Notificaiton&nbsp;
             <svg
@@ -43,8 +106,46 @@ export default function EventPage({ university }) {
               />
             </svg>
           </h2>
-            {console.log(wishlists)}
-        </div> */}
+          {found() ? (
+            <Switch
+              onChange={() => {
+                if (user) {
+                  deleteWishlist(university.univeristy_id);
+                } else {
+                  openModal();
+                }
+              }}
+              className={`${"bg-indigo-600"}
+                    relative inline-flex flex-shrink-0 h-[26px] w-[46px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+            >
+              <span className="sr-only">Use setting</span>
+              <span
+                aria-hidden="true"
+                className={`${"translate-x-5"}
+                    pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
+              />
+            </Switch>
+          ) : (
+            <Switch
+              onChange={() => {
+                if (user) {
+                  addWishlist(university.univeristy_id);
+                } else {
+                  openModal();
+                }
+              }}
+              className={`${"bg-gray-200"}
+                    relative inline-flex flex-shrink-0 h-[26px] w-[46px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+            >
+              <span className="sr-only">Use setting</span>
+              <span
+                aria-hidden="true"
+                className={`${"translate-x-0"}
+                    pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
+              />
+            </Switch>
+          )}
+        </div>
         <div className="flex flex-row justify-between  py-4">
           <h3 className="text-md font-bold text-gray-900 flex tracking-tight">
             Location&nbsp;

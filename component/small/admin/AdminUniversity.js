@@ -16,27 +16,29 @@ function AdminUniversity({ university }) {
 
   const { user } = useContext(userContext);
   const [inputs, setInputs] = useState({});
-  const Add = async (e) => {
+  const Delete = (e) => {
+    fetch("http://192.168.0.126:3001/api/admin/universities", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(e),
+    }).catch((error) => {
+      console.error("Error:", error);
+    });
+  };
+  const add = (e) => {
     e.preventDefault();
     console.log("nice");
-    // fetch("http://192.168.0.126:3001/api/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(inputs),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.msg == "Duplicate") setMessage("Email already used");
-    //     else {
-    //       setUser(data);
-    //       router.push("/");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+    fetch("http://192.168.0.126:3001/api/admin/universities", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputs),
+    }).catch((error) => {
+      console.error("Error:", error);
+    });
   };
   const handleChange = (event) => {
     const name = event.target.name;
@@ -111,6 +113,7 @@ function AdminUniversity({ university }) {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="red"
+                        onClick={() => Delete(e.univeristy_id)}
                       >
                         <path
                           strokeLinecap="round"
@@ -274,13 +277,13 @@ function AdminUniversity({ university }) {
                     value={inputs.university_total || ""}
                     onChange={handleChange}
                   />{" "}
-                  <label>Requirments</label>
+                  <label>Scholarship</label>
                   <input
                     type="text"
-                    placeholder="Requirments"
-                    name="requirments"
+                    placeholder="Scholarship"
+                    name="scholarship"
                     className="block text-sm py-3 px-4 rounded-lg  w-9/12 border outline-none"
-                    value={inputs.requirments || ""}
+                    value={inputs.scholarship || ""}
                     onChange={handleChange}
                   />
                   <label>Slug</label>
@@ -306,7 +309,7 @@ function AdminUniversity({ university }) {
                   <button
                     className="py-3 w-64 text-xl text-white bg-indigo-600 rounded-2xl"
                     type="submit"
-                    onClick={Add}
+                    onClick={add}
                   >
                     Add
                   </button>

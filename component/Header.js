@@ -273,6 +273,38 @@ export default function Header() {
                   </Link>
                 </Disclosure.Button>
               ))}
+              {user ? (
+                <Link href="/wishlist">
+                  <a
+                    className={classNames(
+                      router.pathname == "/wishlist"
+                        ? " text-indigo-600"
+                        : "text-black ",
+                      "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight flex flex-row"
+                    )}
+                  >
+                    Wishlist
+                  </a>
+                </Link>
+              ) : (
+                ""
+              )}
+              {user != null && user.user.role == "admin" ? (
+                <Link href="/admin">
+                  <a
+                    className={classNames(
+                      router.pathname == "/admin"
+                        ? " text-indigo-600"
+                        : "text-black ",
+                      "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight flex flex-row"
+                    )}
+                  >
+                    Admin
+                  </a>
+                </Link>
+              ) : (
+                ""
+              )}
             </div>
           </Disclosure.Panel>
         </>
