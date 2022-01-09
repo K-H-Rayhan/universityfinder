@@ -33,6 +33,7 @@ export default function EventPage({ university }) {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        "x-auth-token": ``
       },
       body: JSON.stringify(inputs),
     }).catch((error) => {

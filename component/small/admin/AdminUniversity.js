@@ -17,12 +17,16 @@ function AdminUniversity({ university }) {
   const { user } = useContext(userContext);
   const [inputs, setInputs] = useState({});
   const Delete = (e) => {
+    
     fetch("http://192.168.0.126:3001/api/admin/universities", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(e),
+    })
+    .then((data) => {
+        router.push("/");
     }).catch((error) => {
       console.error("Error:", error);
     });
@@ -36,7 +40,9 @@ function AdminUniversity({ university }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(inputs),
-    }).catch((error) => {
+    }).then((data) => {
+      router.push("/");
+  }).catch((error) => {
       console.error("Error:", error);
     });
   };
@@ -113,7 +119,7 @@ function AdminUniversity({ university }) {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="red"
-                        onClick={() => Delete(e.univeristy_id)}
+                        onClick={() => Delete(e)}
                       >
                         <path
                           strokeLinecap="round"
