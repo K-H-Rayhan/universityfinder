@@ -99,7 +99,7 @@ function ls({ university, wish = false }) {
                     scope="col"
                     className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    alert
+                    wishlist
                   </th>
                   <th
                     scope="col"
