@@ -18,7 +18,7 @@ function AdminUniversity({ university }) {
   const [inputs, setInputs] = useState({});
   const Add = async (e) => {
     e.preventDefault();
-    console.log("nice");
+
     // fetch("http://192.168.0.126:3001/api/register", {
     //   method: "POST",
     //   headers: {
@@ -41,7 +41,7 @@ function AdminUniversity({ university }) {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    console.log(name + value);
+    
     setInputs((values) => ({ ...values, [name]: value }));
   };
 

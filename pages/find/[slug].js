@@ -50,7 +50,7 @@ export default function EventPage({ university }) {
     }
   };
   const deleteWishlist = async (univeristy_id) => {
-    console.log(user.user.email);
+
     const user_mail = user.user.email;
     const settings = {
       method: "DELETE",

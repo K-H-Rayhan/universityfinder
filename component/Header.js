@@ -1,6 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useContext, useLayoutEffect } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import {
+  Fragment,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
+import { Disclosure, Menu, Transition, Popover } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,8 +15,28 @@ import { userContext } from "./filters/states";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
+const solutions = [
+  {
+    name: "North South University",
+    description: "North South University scholarship notice",
+  },
+  {
+    name: "Automations",
+    description: "Create your own targeted content",
+  },
+  {
+    name: "Reports",
+    description: "Keep track of your growth",
+  },
+];
 export default function Header() {
+  const [solutions, setSolutions] = useState();
+  useEffect(() => {
+    fetch("http://192.168.0.126:3001/api/notice")
+      .then((response) => response.json())
+      .then((data) => setSolutions(data))
+      .catch((err) => console.error(err));
+  },[]);
   const router = useRouter();
   const { user, setUser } = useContext(userContext);
   const signOut = () => {
@@ -131,17 +157,83 @@ export default function Header() {
               </div>
               {user ? (
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <span className="flex h-8 w-8">
-                    <button
-                      type="button"
-                      className="bg-gray-50 p-1 rounded-full text-black hover:text-black focus:outline-none "
+                  <div as="div" className="ml-3 relative">
+                    <div></div>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
                     >
-                      <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                    <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-indigo-400 opacity-75"></span>
-                    <span className="absolute inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
-                  </span>
+                      <div className=" z-50 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <div>Span Scholarship Notice</div>
+                      </div>
+                    </Transition>
+                  </div>
+                  <Popover className="relative z-40">
+                    {({ open }) => (
+                      <>
+                        <Popover.Button>
+                          <div className=" flex text-sm rounded-full focus:outline-none ">
+                            <span className="flex h-8 w-8 mt-2">
+                              <span
+                                type="button"
+                                className="bg-gray-50 p-1 rounded-full text-black hover:text-black focus:outline-none "
+                              >
+                                <span className="sr-only">
+                                  View notifications
+                                </span>
+                                <BellIcon
+                                  className="h-6 w-6"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                              <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-indigo-400 opacity-75"></span>
+                              <span className="absolute inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
+                            </span>
+                          </div>
+                        </Popover.Button>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-200"
+                          enterFrom="opacity-0 translate-y-1"
+                          enterTo="opacity-100 translate-y-0"
+                          leave="transition ease-in duration-150"
+                          leaveFrom="opacity-100 translate-y-0"
+                          leaveTo="opacity-0 translate-y-1"
+                        >
+                          <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 ">
+                            <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                              <div className="relative grid gap-8 bg-white p-7 lg:grid-cols-1">
+                                <h1 className=" text-center">
+                                  Scholarship Notice
+                                </h1>
+                                {solutions?solutions.slice(0, 3).map((item) => (
+                                  <a
+                                  href={item.notice_url}
+                                    key={item.notice_name}
+                                    className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                  >
+                                    <div className="ml-4">
+                                      <p className="text-sm font-medium text-gray-900">
+                                        {item.notice_name}
+                                      </p>
+                                      <p className="text-sm text-gray-500">
+                                        {item.notice_description}
+                                      </p>
+                                    </div>
+                                  </a>
+                                )):""}
+                              </div>
+                            </div>
+                          </Popover.Panel>
+                        </Transition>
+                      </>
+                    )}
+                  </Popover>
                   {/* Profile dropdown */}
                   <Menu as="div" className="ml-3 relative">
                     <div>

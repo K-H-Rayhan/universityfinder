@@ -33,7 +33,7 @@ function AdminUniversity({ university }) {
   };
   const add = (e) => {
     e.preventDefault();
-    console.log("nice");
+   
     fetch("http://192.168.0.126:3001/api/admin/universities", {
       method: "POST",
       headers: {
@@ -49,7 +49,7 @@ function AdminUniversity({ university }) {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    console.log(name + value);
+
     setInputs((values) => ({ ...values, [name]: value }));
   };
 

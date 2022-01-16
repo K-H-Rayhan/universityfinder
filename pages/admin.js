@@ -27,14 +27,14 @@ function Admin({ universities }) {
                     "w-full py-2.5 text-sm leading-5 font-medium text-white rounded-lg px-4",
                     "focus:outline-none ",
                     selected
-                      ? "bg-white shadow text-black"
+                      ? "bg-indigo-600 shadow text-white"
                       : "text-white hover:bg-indigo-600 hover:text-white"
                   )
                 }
               >
                 Universities
               </Tab>
-              <Tab
+              {/* <Tab
                 className={({ selected }) =>
                   classNames(
                     "w-full py-2.5 text-sm leading-5 font-medium text-white rounded-lg px-4",
@@ -59,7 +59,7 @@ function Admin({ universities }) {
                 }
               >
                 Users
-              </Tab>
+              </Tab> */}
             </Tab.List>
 
             <Tab.Panels className="mt-2">

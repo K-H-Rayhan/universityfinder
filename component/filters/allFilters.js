@@ -39,7 +39,7 @@ const location = [
 const departments = [
   {
     id: 1,
-    name: "Computer Science",
+    name: "Computer Science Engineering",
   },
   {
     id: 2,
@@ -47,35 +47,47 @@ const departments = [
   },
   {
     id: 3,
-    name: "Environmental Science",
+    name: "Electrical & Electronic Engineering",
   },
   {
     id: 4,
-    name: "History",
+    name: "Civil & Environmental Engineering",
   },
   {
     id: 5,
-    name: "Neuroscience",
+    name: "Electronic & Telecom Engineering ",
   },
   {
     id: 6,
-    name: "Psychology",
+    name: "Physics",
   },
   {
     id: 7,
-    name: "Pharmacology",
+    name: "Mathmatics",
   },
   {
     id: 8,
-    name: "Mathematics",
+    name: "Chemistry",
   },
   {
     id: 9,
-    name: "Medicine",
+    name: "Accounting",
   },
   {
     id: 10,
-    name: "Microbiology & Immunology",
+    name: "Business Administration",
+  },
+  {
+    id: 11,
+    name: "Finance",
+  },
+  {
+    id: 12,
+    name: "Marketing",
+  },
+  {
+    id: 13,
+    name: "Psychology",
   },
 ];
 const rankings = [

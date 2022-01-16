@@ -12,7 +12,9 @@ import {
   departmentContext,
 } from "../../component/filters/states";
 import Listedbox2 from "../../component/small/Listedbox2";
-function Index() {
+function Index({count}) {
+  const x = count
+  console.log(x);
   const [selected, setSelected] = useState(location[0]);
   const [selected2, setSelected2] = useState(departments[0]);
   const [universities, setUniversities] = useState({});
@@ -24,7 +26,7 @@ function Index() {
       [name]: value,
     }));
   };
-
+console.log(selected2.name);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const universityRes = await fetch(
@@ -91,18 +93,4 @@ function Index() {
 
 export default Index;
 
-export async function getServerSideProps() {
-  // // Calculate start page
-  // const start = +page === 1 ? 0 : (+page - 1) * PER_PAGE
 
-  // // Fetch total/count
-  // const totalRes = await fetch(`${API_URL}/events/count`)
-  // const total = await totalRes.json()
-
-  // Fetch events
-  const universityRes = await fetch(`http://192.168.0.126:3001/api/find/`);
-  const universities = await universityRes.json();
-  return {
-    props: { universities: universities },
-  };
-}
