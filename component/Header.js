@@ -15,20 +15,6 @@ import { userContext } from "./filters/states";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-const solutions = [
-  {
-    name: "North South University",
-    description: "North South University scholarship notice",
-  },
-  {
-    name: "Automations",
-    description: "Create your own targeted content",
-  },
-  {
-    name: "Reports",
-    description: "Keep track of your growth",
-  },
-];
 export default function Header() {
   const [solutions, setSolutions] = useState();
   useEffect(() => {

@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import {React} from "react";
+import { useEffect, useState } from "react";
 import Layout from "../component/Layout";
 function index() {
+  const [asdasd, setX] = useState({});
+  useEffect(async () => {
+    const csdf = await fetch("https://api.github.com/repos/zeit/next.js").then(
+      (res) => res.json()
+    );
+    setX(csdf);
+  }, []);
   return (
     <Layout>
       <div className="relative bg-white overflow-hidden z-auto">
@@ -13,15 +20,17 @@ function index() {
                 University Finder Bangladesh
               </h1>
               <p className="mt-4 text-xl text-gray-500">
-              Struggling to find a university ?<br/>Search for top universities in BD
+                Struggling to find a university ?<br />
+                Search for top universities in BD
               </p>
             </div>
             <div>
-            <Link href="/find">
-                  <span className=" mt-10 inline-block text-center bg-indigo-600 border border-transparent rounded-3xl py-3 px-8 font-medium text-white hover:bg-indigo-700 cursor-pointer">
-                    Find University
-                  </span>
-                </Link>
+              <Link href="/find">
+                <span className=" mt-10 inline-block text-center bg-indigo-600 border border-transparent rounded-3xl py-3 px-8 font-medium text-white hover:bg-indigo-700 cursor-pointer">
+                  Find University
+                  {asdasd.id}
+                </span>
+              </Link>
               <div className="mt-10">
                 {/* Decorative image grid */}
                 <div
