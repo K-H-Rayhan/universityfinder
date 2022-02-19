@@ -5,10 +5,11 @@ import Layout from "../component/Layout";
 function index() {
   const [asdasd, setX] = useState({});
   useEffect(async () => {
-    const csdf = await fetch("https://api.github.com/repos/zeit/next.js").then(
+    const csdf = await fetch("https://limitless-taiga-11177.herokuapp.com/api/find").then(
       (res) => res.json()
     );
-    setX(csdf);
+    setX(csdf[0]);
+    console.log(csdf[0].email);
   }, []);
   return (
     <Layout>
@@ -28,7 +29,7 @@ function index() {
               <Link href="/find">
                 <span className=" mt-10 inline-block text-center bg-indigo-600 border border-transparent rounded-3xl py-3 px-8 font-medium text-white hover:bg-indigo-700 cursor-pointer">
                   Find University
-                  {asdasd.id}
+                  {asdasd.email}
                 </span>
               </Link>
               <div className="mt-10">
