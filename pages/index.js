@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Layout from "../component/Layout";
-function index() {
+function Index() {
   const [asdasd, setX] = useState({});
   useEffect(async () => {
     const csdf = await fetch("https://limitless-taiga-11177.herokuapp.com/api/find").then(
@@ -56,4 +56,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
