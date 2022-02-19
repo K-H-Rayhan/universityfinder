@@ -1,16 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import {React} from "react";
 import Layout from "../component/Layout";
-function Index() {
-  const [asdasd, setX] = useState({});
-  useEffect(async () => {
-    const csdf = await fetch("https://limitless-taiga-11177.herokuapp.com/api/find").then(
-      (res) => res.json()
-    );
-    setX(csdf[0]);
-    console.log(csdf[0].email);
-  }, []);
+function index() {
   return (
     <Layout>
       <div className="relative bg-white overflow-hidden z-auto">
@@ -21,17 +13,15 @@ function Index() {
                 University Finder Bangladesh
               </h1>
               <p className="mt-4 text-xl text-gray-500">
-                Struggling to find a university ?<br />
-                Search for top universities in BD
+              Struggling to find a university ?<br/>Search for top universities in BD
               </p>
             </div>
             <div>
-              <Link href="/find">
-                <span className=" mt-10 inline-block text-center bg-indigo-600 border border-transparent rounded-3xl py-3 px-8 font-medium text-white hover:bg-indigo-700 cursor-pointer">
-                  Find University
-                  {asdasd.email}
-                </span>
-              </Link>
+            <Link href="/find">
+                  <span className=" mt-10 inline-block text-center bg-indigo-600 border border-transparent rounded-3xl py-3 px-8 font-medium text-white hover:bg-indigo-700 cursor-pointer">
+                    Find University
+                  </span>
+                </Link>
               <div className="mt-10">
                 {/* Decorative image grid */}
                 <div
@@ -56,4 +46,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default index;
