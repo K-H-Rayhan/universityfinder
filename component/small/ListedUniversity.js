@@ -22,7 +22,7 @@ function ls({ university, wish = false }) {
       `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
     );
     const wishlist = await wishlistRes.json();
-    console.log(wishlist)
+    console.log(wishlist);
     setWishlists(wishlist);
   }, [dataUpdated]);
 
