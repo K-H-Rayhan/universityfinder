@@ -5,7 +5,7 @@ import Layout from "../component/Layout";
 function Index() {
   const [asdasd, setX] = useState({});
   useEffect(async () => {
-    const csdf = await fetch("http://localhost:3001/api/find").then((res) =>
+    const csdf = await fetch("https://limitless-taiga-11177.herokuapp.com/api/find").then((res) =>
       res.json()
     );
     setX(csdf[0]);
