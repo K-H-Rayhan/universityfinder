@@ -163,22 +163,22 @@ export default function Header() {
                     {({ open }) => (
                       <>
                         <Popover.Button>
-                          <div className=" flex text-sm rounded-full focus:outline-none ">
-                            <span className="flex h-8 w-8 mt-2">
+                          <div className=" flex text-sm rounded-full focus:outline-none px-2">
+                            <span className="flex h-8 w-8 mt-3 md:mt-2 ">
                               <span
                                 type="button"
-                                className="bg-gray-50 p-1 rounded-full text-black hover:text-black focus:outline-none "
+                                className="md:bg-gray-50 p-1 rounded-full text-black hover:text-black focus:outline-none"
                               >
                                 <span className="sr-only">
                                   View notifications
                                 </span>
                                 <BellIcon
-                                  className="h-6 w-6"
+                                  className="h-6 w-6 pt-1 md:pt-0"
                                   aria-hidden="true"
                                 />
                               </span>
-                              <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-indigo-400 opacity-75"></span>
-                              <span className="absolute inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
+                              <span className="animate-ping absolute h-3 w-3 rounded-full bg-indigo-400 opacity-75 hidden md:inline-flex"></span>
+                              <span className="absolute  rounded-full h-3 w-3 bg-indigo-600 hidden md:inline-flex"></span>
                             </span>
                           </div>
                         </Popover.Button>
