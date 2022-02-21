@@ -19,7 +19,7 @@ function AdminUniversity({ university }) {
   const Add = async (e) => {
     e.preventDefault();
 
-    // fetch("http://192.168.0.126:3001/api/register", {
+    // fetch("https://limitless-taiga-11177.herokuapp.com/api/register", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
