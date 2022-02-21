@@ -36,12 +36,11 @@ function ls({ university, wish = false }) {
       },
     };
     try {
-      const universityRes = await fetch(
+      await fetch(
         `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
-      const university = await universityRes.json();
-      setdataUpdated(Math.random());
+      await setdataUpdated(Math.random());
       return data;
     } catch (e) {
       return e;
@@ -57,12 +56,11 @@ function ls({ university, wish = false }) {
       },
     };
     try {
-      const universityRes = await fetch(
+      await fetch(
         `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
-      const university = await universityRes.json();
-      setdataUpdated(Math.random());
+      await setdataUpdated(Math.random());
       return data;
     } catch (e) {
       return e;
