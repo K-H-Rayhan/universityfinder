@@ -5,8 +5,8 @@ import Layout from "../component/Layout";
 function Index() {
   const [asdasd, setX] = useState({});
   useEffect(async () => {
-    const csdf = await fetch("http://localhost:3001/api/find").then(
-      (res) => res.json()
+    const csdf = await fetch("http://localhost:3001/api/find").then((res) =>
+      res.json()
     );
     setX(csdf[0]);
     console.log(csdf[0].email);
@@ -57,3 +57,12 @@ function Index() {
 }
 
 export default Index;
+
+export async function getServerSideProps({ query: { id } }) {
+  const res = await fetch(`http://192.168.0.126:3001/api/find/`);
+  return {
+    props: {
+     
+    },
+  };
+}

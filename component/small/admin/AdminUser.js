@@ -37,7 +37,7 @@ function AdminUser({ university }) {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 text-center">
                 {university.map((e) => (
-                  <tr key={e.univeristy_id}>
+                  <tr key={e._id}>
                     <td className="py-2">
                       <div className="text-sm text-gray-900 text-ellipsis text-left px-8">
                         {e.university_name}

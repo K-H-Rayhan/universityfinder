@@ -92,7 +92,7 @@ const departments = [
 ];
 const rankings = [
   {
-    univeristy_id: 4295918,
+    _id: 4295918,
     univeristy_qsranking: 29,
     university_name: 'United International University',
     university_surname: 'UIU',

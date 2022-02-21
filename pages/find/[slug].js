@@ -12,7 +12,7 @@ export default function EventPage({ university }) {
   useEffect(async () => {
     const email = await localStorage.getItem("email");
     const wishlistRes = await fetch(
-      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
+      `http://192.168.0.126:3001/api/wishlist?user_mail=${email}`
     );
     const wishlist = await wishlistRes.json();
     setWishlists(wishlist);
@@ -20,13 +20,13 @@ export default function EventPage({ university }) {
   useEffect(async () => {
     const email = await localStorage.getItem("email");
     const wishlistRes = await fetch(
-      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
+      `http://192.168.0.126:3001/api/wishlist?user_mail=${email}`
     );
     const wishlist = await wishlistRes.json();
     setWishlists(wishlist);
   }, [dataUpdated]);
 
-  const addWishlist = async (univeristy_id) => {
+  const addWishlist = async (_id) => {
     const user_mail = user.user.email;
     const settings = {
       method: "POST",
@@ -37,7 +37,7 @@ export default function EventPage({ university }) {
     };
     try {
       const universityRes = await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&univeristy_id=${univeristy_id}`,
+        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       const university = await universityRes.json();
@@ -47,7 +47,7 @@ export default function EventPage({ university }) {
       return e;
     }
   };
-  const deleteWishlist = async (univeristy_id) => {
+  const deleteWishlist = async (_id) => {
 
     const user_mail = user.user.email;
     const settings = {
@@ -59,7 +59,7 @@ export default function EventPage({ university }) {
     };
     try {
       const universityRes = await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&univeristy_id=${univeristy_id}`,
+        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       const university = await universityRes.json();
@@ -72,7 +72,7 @@ export default function EventPage({ university }) {
 
   const found = () => {
     for (let i = 0; i < wishlists.length; i++)
-      if (wishlists[i].univeristy_id == university.univeristy_id) {
+      if (wishlists[i] == university._id) {
         return true;
       }
   };
@@ -108,7 +108,7 @@ export default function EventPage({ university }) {
             <Switch
               onChange={() => {
                 if (user) {
-                  deleteWishlist(university.univeristy_id);
+                  deleteWishlist(university._id);
                 } else {
                   openModal();
                 }
@@ -127,7 +127,7 @@ export default function EventPage({ university }) {
             <Switch
               onChange={() => {
                 if (user) {
-                  addWishlist(university.univeristy_id);
+                  addWishlist(university._id);
                 } else {
                   openModal();
                 }
@@ -250,7 +250,7 @@ export default function EventPage({ university }) {
 // }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`);
+  const res = await fetch(`http://192.168.0.126:3001/api/find/${slug}`);
   const university = await res.json();
   return {
     props: {

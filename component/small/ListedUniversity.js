@@ -19,13 +19,13 @@ function ls({ university, wish = false }) {
   useEffect(async () => {
     const email = await localStorage.getItem("email");
     const wishlistRes = await fetch(
-      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
+      `http://192.168.0.126:3001/api/wishlist?user_mail=${email}`
     );
     const wishlist = await wishlistRes.json();
     setWishlists(wishlist);
   }, [dataUpdated]);
 
-  const addWishlist = async (univeristy_id) => {
+  const addWishlist = async (_id) => {
     const user_mail = user.user.email;
     const settings = {
       method: "POST",
@@ -36,7 +36,7 @@ function ls({ university, wish = false }) {
     };
     try {
       const universityRes = await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&univeristy_id=${univeristy_id}`,
+        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       const university = await universityRes.json();
@@ -46,7 +46,7 @@ function ls({ university, wish = false }) {
       return e;
     }
   };
-  const deleteWishlist = async (univeristy_id) => {
+  const deleteWishlist = async (_id) => {
     const user_mail = user.user.email;
     const settings = {
       method: "DELETE",
@@ -57,7 +57,7 @@ function ls({ university, wish = false }) {
     };
     try {
       const universityRes = await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&univeristy_id=${univeristy_id}`,
+        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       const university = await universityRes.json();
@@ -70,7 +70,7 @@ function ls({ university, wish = false }) {
 
   const found = (e) => {
     for (let i = 0; i < wishlists.length; i++)
-      if (wishlists[i].univeristy_id == e.univeristy_id) {
+      if (wishlists[i] == e._id) {
         return true;
       }
   };
@@ -128,7 +128,7 @@ function ls({ university, wish = false }) {
                         return wish ? (found(e) ? e : "") : e;
                       })
                       .map((e) => (
-                        <tr key={e.univeristy_id}>
+                        <tr key={e._id}>
                           <td className=" py-4 whitespace-nowrap">
                             <div className="text-sm text-gray-900">
                               {e.univeristy_qsranking}
@@ -148,7 +148,7 @@ function ls({ university, wish = false }) {
                                 <Switch
                                   onChange={() => {
                                     if (user) {
-                                      deleteWishlist(e.univeristy_id);
+                                      deleteWishlist(e._id);
                                     } else {
                                       openModal();
                                     }
@@ -167,7 +167,7 @@ function ls({ university, wish = false }) {
                                 <Switch
                                   onChange={() => {
                                     if (user) {
-                                      addWishlist(e.univeristy_id);
+                                      addWishlist(e._id);
                                     } else {
                                       openModal();
                                     }
@@ -185,10 +185,10 @@ function ls({ university, wish = false }) {
                               )
                             ) : (
                               <Switch
-                                key={e.univeristy_id}
+                                key={e._id}
                                 onChange={() => {
                                   if (user) {
-                                    addWishlist(e.univeristy_id);
+                                    addWishlist(e._id);
                                   } else {
                                     openModal();
                                   }

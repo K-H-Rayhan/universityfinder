@@ -14,7 +14,7 @@ export default function EventPage({ university }) {
   }, []);
   university = university[0];
   const [inputs, setInputs] = useState({
-    univeristy_id: university.univeristy_id,
+    _id: university._id,
     university_name: university.university_name,
     description: university.university_description,
     university_hsc: university.university_hsc,
@@ -29,7 +29,7 @@ export default function EventPage({ university }) {
 
   const update = async (e) => {
     e.preventDefault();
-    fetch("https://limitless-taiga-11177.herokuapp.com/api/admin/universities", {
+    fetch("http://192.168.0.126:3001/api/admin/universities", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -162,7 +162,7 @@ export default function EventPage({ university }) {
 }
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/${id}`);
+  const res = await fetch(`http://192.168.0.126:3001/api/find/${id}`);
   const university = await res.json();
   return {
     props: {

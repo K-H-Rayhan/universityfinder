@@ -18,11 +18,11 @@ function classNames(...classes) {
 export default function Header() {
   const [solutions, setSolutions] = useState();
   useEffect(() => {
-    fetch("https://limitless-taiga-11177.herokuapp.com/api/notice")
+    fetch("http://192.168.0.126:3001/api/notice")
       .then((response) => response.json())
       .then((data) => setSolutions(data))
       .catch((err) => console.error(err));
-  },[]);
+  }, []);
   const router = useRouter();
   const { user, setUser } = useContext(userContext);
   const signOut = () => {
@@ -164,7 +164,7 @@ export default function Header() {
                       <>
                         <Popover.Button>
                           <div className=" flex text-sm rounded-full focus:outline-none px-2">
-                            <span className="flex h-8 w-8 mt-3 md:mt-2 ">
+                            <span className="flex h-8 w-8 mt-4 md:mt-2 ">
                               <span
                                 type="button"
                                 className="md:bg-gray-50 p-1 rounded-full text-black hover:text-black focus:outline-none"
@@ -173,12 +173,12 @@ export default function Header() {
                                   View notifications
                                 </span>
                                 <BellIcon
-                                  className="h-6 w-6 pt-1 md:pt-0"
+                                  className="h-6 w-6 md:pt-0 -ml-1 md:m-0"
                                   aria-hidden="true"
                                 />
                               </span>
-                              <span className="animate-ping absolute h-3 w-3 rounded-full bg-indigo-400 opacity-75 hidden md:inline-flex"></span>
-                              <span className="absolute  rounded-full h-3 w-3 bg-indigo-600 hidden md:inline-flex"></span>
+                              <span className="animate-ping absolute h-3 w-3 rounded-full bg-indigo-400 opacity-75 inline-flex"></span>
+                              <span className="absolute  rounded-full h-3 w-3 bg-indigo-600 inline-flex"></span>
                             </span>
                           </div>
                         </Popover.Button>
@@ -191,28 +191,30 @@ export default function Header() {
                           leaveFrom="opacity-100 translate-y-0"
                           leaveTo="opacity-0 translate-y-1"
                         >
-                          <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 ">
+                          <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-3/4 ">
                             <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                               <div className="relative grid gap-8 bg-white p-7 lg:grid-cols-1">
                                 <h1 className=" text-center">
                                   Scholarship Notice
                                 </h1>
-                                {solutions?solutions.slice(0, 3).map((item) => (
-                                  <a
-                                  href={item.notice_url}
-                                    key={item.notice_name}
-                                    className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                  >
-                                    <div className="ml-4">
-                                      <p className="text-sm font-medium text-gray-900">
-                                        {item.notice_name}
-                                      </p>
-                                      <p className="text-sm text-gray-500">
-                                        {item.notice_description}
-                                      </p>
-                                    </div>
-                                  </a>
-                                )):""}
+                                {solutions
+                                  ? solutions.slice(0, 3).map((item) => (
+                                      <a
+                                        href={item.notice_url}
+                                        key={item.notice_name}
+                                        className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                      >
+                                        <div className="ml-4">
+                                          <p className="text-sm font-medium text-gray-900">
+                                            {item.notice_name}
+                                          </p>
+                                          <p className="text-sm text-gray-500">
+                                            {item.notice_description}
+                                          </p>
+                                        </div>
+                                      </a>
+                                    ))
+                                  : ""}
                               </div>
                             </div>
                           </Popover.Panel>

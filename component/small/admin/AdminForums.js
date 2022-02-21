@@ -19,7 +19,7 @@ function AdminUniversity({ university }) {
   const Add = async (e) => {
     e.preventDefault();
 
-    // fetch("https://limitless-taiga-11177.herokuapp.com/api/register", {
+    // fetch("http://192.168.0.126:3001/api/register", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function AdminUniversity({ university }) {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 text-center">
                 {university.map((e) => (
-                  <tr key={e.univeristy_id}>
+                  <tr key={e._id}>
                     <td className=" whitespace-nowrap py-2">
                       <div className="text-sm text-gray-900 text-ellipsis text-left px-8">
                         {e.university_name}

@@ -14,7 +14,7 @@ function Login() {
   const [inputs, setInputs] = useState({});
   const register = (e) => {
     e.preventDefault();
-    fetch("https://limitless-taiga-11177.herokuapp.com/api/register", {
+    fetch("http://192.168.0.126:3001/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ function Login() {
   };
   const login = (e) => {
     e.preventDefault();
-    fetch("https://limitless-taiga-11177.herokuapp.com/api/login", {
+    fetch("http://192.168.0.126:3001/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
