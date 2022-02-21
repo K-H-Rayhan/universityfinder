@@ -13,7 +13,6 @@ function Layout({ title, description, keywords, children }) {
       </Head>
       <Header />
       {children}
-      <Footer />
     </div>
   );
 }
