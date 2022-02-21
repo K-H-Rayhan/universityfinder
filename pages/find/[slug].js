@@ -17,8 +17,6 @@ export default function EventPage({ university }) {
     const wishlist = await wishlistRes.json();
     setWishlists(wishlist);
   }, []);
-  university = university[0];
-
   useEffect(async () => {
     const email = await localStorage.getItem("email");
     const wishlistRes = await fetch(
@@ -86,7 +84,7 @@ export default function EventPage({ university }) {
           {university.university_name}
         </h1>
         <p className="text-base text-gray-900 pt-6">
-          {university.university_description}
+          {university.description}
         </p>
         <div className="flex flex-row justify-between py-4 mt-5">
           <h2 className="text-md font-bold text-gray-900  flex tracking-tight self-center">
