@@ -59,7 +59,7 @@ function Index() {
 export default Index;
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`http://192.168.0.126:3001/api/find/`);
+  const res = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/`);
   return {
     props: {
      

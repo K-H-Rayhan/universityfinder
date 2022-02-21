@@ -19,9 +19,10 @@ function ls({ university, wish = false }) {
   useEffect(async () => {
     const email = await localStorage.getItem("email");
     const wishlistRes = await fetch(
-      `http://192.168.0.126:3001/api/wishlist?user_mail=${email}`
+      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
     );
     const wishlist = await wishlistRes.json();
+    console.log(wishlist)
     setWishlists(wishlist);
   }, [dataUpdated]);
 
@@ -36,7 +37,7 @@ function ls({ university, wish = false }) {
     };
     try {
       const universityRes = await fetch(
-        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
+        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       const university = await universityRes.json();
@@ -57,7 +58,7 @@ function ls({ university, wish = false }) {
     };
     try {
       const universityRes = await fetch(
-        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
+        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       const university = await universityRes.json();

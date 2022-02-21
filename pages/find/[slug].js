@@ -12,7 +12,7 @@ export default function EventPage({ university }) {
   useEffect(async () => {
     const email = await localStorage.getItem("email");
     const wishlistRes = await fetch(
-      `http://192.168.0.126:3001/api/wishlist?user_mail=${email}`
+      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
     );
     const wishlist = await wishlistRes.json();
     setWishlists(wishlist);
@@ -20,7 +20,7 @@ export default function EventPage({ university }) {
   useEffect(async () => {
     const email = await localStorage.getItem("email");
     const wishlistRes = await fetch(
-      `http://192.168.0.126:3001/api/wishlist?user_mail=${email}`
+      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
     );
     const wishlist = await wishlistRes.json();
     setWishlists(wishlist);
@@ -37,7 +37,7 @@ export default function EventPage({ university }) {
     };
     try {
       const universityRes = await fetch(
-        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
+        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       const university = await universityRes.json();
@@ -59,7 +59,7 @@ export default function EventPage({ university }) {
     };
     try {
       const universityRes = await fetch(
-        `http://192.168.0.126:3001/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
+        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       const university = await universityRes.json();
@@ -250,7 +250,7 @@ export default function EventPage({ university }) {
 // }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`http://192.168.0.126:3001/api/find/${slug}`);
+  const res = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`);
   const university = await res.json();
   return {
     props: {

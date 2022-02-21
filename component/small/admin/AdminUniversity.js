@@ -18,7 +18,7 @@ function AdminUniversity({ university }) {
   const [inputs, setInputs] = useState({});
   const Delete = (e) => {
     
-    fetch("http://192.168.0.126:3001/api/admin/universities", {
+    fetch("https://limitless-taiga-11177.herokuapp.com/api/admin/universities", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ function AdminUniversity({ university }) {
   const add = (e) => {
     e.preventDefault();
    
-    fetch("http://192.168.0.126:3001/api/admin/universities", {
+    fetch("https://limitless-taiga-11177.herokuapp.com/api/admin/universities", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

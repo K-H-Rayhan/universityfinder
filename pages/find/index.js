@@ -30,7 +30,7 @@ console.log(selected2.name);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const universityRes = await fetch(
-      `http://192.168.0.126:3001/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`
+      `https://limitless-taiga-11177.herokuapp.com/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`
     );
     const university = await universityRes.json();
     setUniversities(university);
