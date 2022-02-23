@@ -80,47 +80,47 @@ function ls({ university, wish = false }) {
         <div className="sm:py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table className="w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-indigo-600">
                 <tr>
                   <th
                     scope="col"
-                    className="py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                    className="py-3 text-xs font-medium text-white uppercase tracking-wider text-center"
                   >
                     Rank
                   </th>
                   <th
                     scope="col"
-                    className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="text-left text-xs font-medium text-white uppercase tracking-wider"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="text-center text-xs font-medium text-white uppercase tracking-wider"
                   >
                     wishlist
                   </th>
                   <th
                     scope="col"
-                    className="hidden sm:table-cell  text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="hidden sm:table-cell  text-center text-xs font-medium text-white uppercase tracking-wider"
                   >
                     location
                   </th>
                   <th
                     scope="col"
-                    className="hidden sm:table-cell  text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="hidden sm:table-cell  text-center text-xs font-medium text-white uppercase tracking-wider"
                   >
                     scholarship
                   </th>
                   <th
                     scope="col"
-                    className=" text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className=" text-center text-xs font-medium text-white uppercase tracking-wider"
                   >
                     view
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200 text-center">
+              <tbody className="bg-white divide-y divide-indigo-00 text-center">
                 {university.length != undefined
                   ? university
                       .filter((e) => {
@@ -210,7 +210,7 @@ pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-
                             </div>
                           </td>
                           <td className="hidden sm:table-cell py-4 whitespace-nowrap">
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            <span className="px-2 inline-flex text-[10px] leading-5 font-semibold rounded-full text-black">
                               {e.scholarship}
                             </span>
                           </td>

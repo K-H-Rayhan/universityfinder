@@ -115,7 +115,7 @@ export default function Header() {
                             router.pathname == "/admin"
                               ? " text-indigo-600"
                               : "text-black ",
-                            "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight flex flex-row"
+                            "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight hidden"
                           )}
                         >
                           <svg
@@ -376,7 +376,7 @@ export default function Header() {
                       router.pathname == "/admin"
                         ? " text-indigo-600"
                         : "text-black ",
-                      "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight flex flex-row"
+                      "px-3 py-2 rounded-3xl text-sm font-bold tracking-tight hidden"
                     )}
                   >
                     Admin
