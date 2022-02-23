@@ -283,6 +283,6 @@ export async function getStaticProps({ params: { slug } }) {
     props: {
       university: university,
     },
-    revalidate: 1000000,
+    revalidate: 8640000,
   };
 }
