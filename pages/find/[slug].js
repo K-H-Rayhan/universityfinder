@@ -36,19 +36,17 @@ export default function EventPage({ university }) {
       },
     };
     try {
-      const universityRes = await fetch(
+      await fetch(
         `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
-      const university = await universityRes.json();
-      setdataUpdated(Math.random());
+      await setdataUpdated(Math.random());
       return data;
     } catch (e) {
       return e;
     }
   };
   const deleteWishlist = async (_id) => {
-
     const user_mail = user.user.email;
     const settings = {
       method: "DELETE",
@@ -62,8 +60,7 @@ export default function EventPage({ university }) {
         `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
-      const university = await universityRes.json();
-      setdataUpdated(Math.random());
+      await setdataUpdated(Math.random());
       return data;
     } catch (e) {
       return e;
@@ -83,9 +80,7 @@ export default function EventPage({ university }) {
         <h1 className="text-2xl  font-extrabold tracking-tight text-gray-900 sm:text-3xl mt-6">
           {university.university_name}
         </h1>
-        <p className="text-base text-gray-900 pt-6">
-          {university.description}
-        </p>
+        <p className="text-base text-gray-900 pt-6">{university.description}</p>
         <div className="flex flex-row justify-between py-4 mt-5">
           <h2 className="text-md font-bold text-gray-900  flex tracking-tight self-center">
             Exam Notificaiton&nbsp;
@@ -250,7 +245,9 @@ export default function EventPage({ university }) {
 // }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`);
+  const res = await fetch(
+    `https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`
+  );
   const university = await res.json();
   return {
     props: {
