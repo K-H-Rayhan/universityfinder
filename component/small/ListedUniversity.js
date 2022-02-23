@@ -17,14 +17,15 @@ function ls({ university, wish = false }) {
     setIsOpen(true);
   }
 
-  localStorage.getItem("email")!="undefined" && useEffect(async () => {
+  useEffect(async () => {
     const email = await localStorage.getItem("email");
-    await setLoading(false);
-    const wishlistRes = await fetch(
-      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
-    );
-    const wishlist = await wishlistRes.json();
-    setWishlists(wishlist);
+    if (localStorage.getItem("email") != "undefined") {
+      const wishlistRes = await fetch(
+        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
+      );
+      const wishlist = await wishlistRes.json();
+      setWishlists(wishlist);
+    }
   }, [dataUpdated]);
 
   const addWishlist = async (_id) => {
