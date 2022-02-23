@@ -268,7 +268,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -282,6 +282,7 @@ export async function getStaticProps({ params: { slug } }) {
   return {
     props: {
       university: university,
-    }
+    },
+    revalidate: 1000000,
   };
 }
