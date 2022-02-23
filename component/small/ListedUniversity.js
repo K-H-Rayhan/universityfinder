@@ -25,6 +25,7 @@ function ls({ university, wish = false }) {
       );
       const wishlist = await wishlistRes.json();
       setWishlists(wishlist);
+      setLoading(false)
     }
   }, [dataUpdated]);
 
