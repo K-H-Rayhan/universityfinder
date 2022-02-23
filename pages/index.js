@@ -9,7 +9,6 @@ function Index() {
       res.json()
     );
     setX(csdf[0]);
-    console.log(csdf[0].email);
   }, []);
   return (
     <Layout>

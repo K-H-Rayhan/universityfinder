@@ -17,7 +17,7 @@ function ls({ university, wish = false }) {
     setIsOpen(true);
   }
 
-  useEffect(async () => {
+  localStorage.getItem("email")!="undefined" && useEffect(async () => {
     const email = await localStorage.getItem("email");
     await setLoading(false);
     const wishlistRes = await fetch(

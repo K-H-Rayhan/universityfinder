@@ -14,7 +14,6 @@ import {
 import Listedbox2 from "../../component/small/Listedbox2";
 function Index({count}) {
   const x = count
-  console.log(x);
   const [selected, setSelected] = useState(location[0]);
   const [selected2, setSelected2] = useState(departments[0]);
   const [universities, setUniversities] = useState({});
@@ -26,7 +25,6 @@ function Index({count}) {
       [name]: value,
     }));
   };
-console.log(selected2.name);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const universityRes = await fetch(
