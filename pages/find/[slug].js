@@ -244,14 +244,43 @@ export default function EventPage({ university }) {
 //   }
 // }
 
-export async function getServerSideProps({ query: { slug } }) {
+// export async function getServerSideProps({ query: { slug } }) {
+//   const res = await fetch(
+//     `https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`
+//   );
+//   const university = await res.json();
+//   return {
+//     props: {
+//       university: university,
+//     },
+//   };
+// }
+
+export async function getStaticPaths() {
+  const universityRes = await fetch(
+    `https://limitless-taiga-11177.herokuapp.com/api/find/`
+  );
+  const universities = await universityRes.json();
+
+  const paths = universities.map((evt) => ({
+    params: { slug: evt.slug },
+  }));
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params: { slug } }) {
   const res = await fetch(
     `https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`
   );
   const university = await res.json();
+
   return {
     props: {
       university: university,
-    },
+    }
   };
 }

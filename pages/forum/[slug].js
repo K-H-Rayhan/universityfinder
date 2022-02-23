@@ -25,21 +25,12 @@ export default function EventPage({ post }) {
   );
 }
 
-// export async function getStaticProps({ query: { slug } }) {
-//   const res = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`);
-//   const post = await res.json();
-//   return {
-//     props: {
-//       post: post,
-//     },
-//   };
-// }
-export async function getStaticProps({ query: { slug } }) {
-  const res = await fetch(
-    `https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`
-  );
+export async function getServerSideProps({ query: { slug } }) {
+  const res = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`);
   const post = await res.json();
   return {
-    props: { post: post },
+    props: {
+      post: post,
+    },
   };
 }
