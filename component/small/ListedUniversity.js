@@ -3,7 +3,6 @@ import { Switch, Dialog, Transition } from "@headlessui/react";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { userContext } from "../filters/states";
 function ls({ university, wish = false }) {
-  const [loading, setLoading] = useState(true);
   let [isOpen, setIsOpen] = useState(false);
   const [enabled, setEnabled] = useState(false);
   const router = useRouter();
@@ -25,7 +24,6 @@ function ls({ university, wish = false }) {
       );
       const wishlist = await wishlistRes.json();
       setWishlists(wishlist);
-      setLoading(false)
     }
   }, [dataUpdated]);
 
@@ -123,9 +121,6 @@ function ls({ university, wish = false }) {
                   </th>
                 </tr>
               </thead>
-              {loading ? (
-                <div />
-              ) : (
                 <tbody className="bg-white divide-y divide-indigo-00 text-center">
                   {university.length != undefined
                     ? university
@@ -244,7 +239,6 @@ pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-
                         ))
                     : null}
                 </tbody>
-              )}
             </table>
           </div>
         </div>
