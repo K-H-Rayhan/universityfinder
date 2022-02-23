@@ -278,6 +278,7 @@ export async function getStaticProps({ params: { slug } }) {
   );
   const university = await res.json();
 
+  console.log(university);
   return {
     props: {
       university: university,
