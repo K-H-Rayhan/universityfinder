@@ -18,14 +18,6 @@ export default function EventPage({ university }) {
       const wishlist = await wishlistRes.json();
       setWishlists(wishlist);
     } catch (e) {}
-  }, []);
-  useEffect(async () => {
-    const email = await localStorage.getItem("email");
-    const wishlistRes = await fetch(
-      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
-    );
-    const wishlist = await wishlistRes.json();
-    setWishlists(wishlist);
   }, [dataUpdated]);
 
   const addWishlist = async (_id) => {
@@ -74,6 +66,9 @@ export default function EventPage({ university }) {
       if (wishlists[i] == university._id) {
         return true;
       }
+  };
+  const openModal = () => {
+    return null;
   };
 
   return (
