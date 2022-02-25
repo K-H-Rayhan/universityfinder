@@ -17,14 +17,16 @@ function ls({ university, wish = false }) {
   }
 
   useEffect(async () => {
-    const email = await localStorage.getItem("email");
-    if (localStorage.getItem("email") != "undefined") {
-      const wishlistRes = await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
-      );
-      const wishlist = await wishlistRes.json();
-      setWishlists(wishlist);
-    }
+    try {
+      const email = await localStorage.getItem("email");
+      if (localStorage.getItem("email") != "undefined") {
+        const wishlistRes = await fetch(
+          `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
+        );
+        const wishlist = await wishlistRes.json();
+        setWishlists(wishlist);
+      }
+    } catch (e) {}
   }, [dataUpdated]);
 
   const addWishlist = async (_id) => {
@@ -121,71 +123,50 @@ function ls({ university, wish = false }) {
                   </th>
                 </tr>
               </thead>
-                <tbody className="bg-white divide-y divide-indigo-00 text-center">
-                  {university.length != undefined
-                    ? university
-                        .filter((e) => {
-                          return wish ? (found(e) ? e : "") : e;
-                        })
-                        .map((e) => (
-                          <tr key={e._id}>
-                            <td className=" py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">
-                                {e.univeristy_qsranking}
-                              </div>
-                            </td>
-                            <td className=" whitespace-nowrap">
-                              <div
-                                className="text-sm text-gray-900 text-ellipsis w-48 text-left cursor-pointer"
-                                onClick={() => router.push(`/find/${e.slug}`)}
-                              >
-                                {e.university_name}
-                              </div>
-                            </td>
-                            <td className="whitespace-nowrap">
-                              {wishlists.length > 0 ? (
-                                found(e) ? (
-                                  <Switch
-                                    onChange={() => {
-                                      if (user) {
-                                        deleteWishlist(e._id);
-                                      } else {
-                                        openModal();
-                                      }
-                                    }}
-                                    className={`${"bg-indigo-600"}
+              <tbody className="bg-white divide-y divide-indigo-00 text-center">
+                {university.length != undefined
+                  ? university
+                      .filter((e) => {
+                        return wish ? (found(e) ? e : "") : e;
+                      })
+                      .map((e) => (
+                        <tr key={e._id}>
+                          <td className=" py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">
+                              {e.univeristy_qsranking}
+                            </div>
+                          </td>
+                          <td className=" whitespace-nowrap">
+                            <div
+                              className="text-sm text-gray-900 text-ellipsis w-48 text-left cursor-pointer"
+                              onClick={() => router.push(`/find/${e.slug}`)}
+                            >
+                              {e.university_name}
+                            </div>
+                          </td>
+                          <td className="whitespace-nowrap">
+                            {wishlists.length > 0 ? (
+                              found(e) ? (
+                                <Switch
+                                  onChange={() => {
+                                    if (user) {
+                                      deleteWishlist(e._id);
+                                    } else {
+                                      openModal();
+                                    }
+                                  }}
+                                  className={`${"bg-indigo-600"}
                     relative inline-flex flex-shrink-0 h-[26px] w-[46px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
-                                  >
-                                    <span className="sr-only">Use setting</span>
-                                    <span
-                                      aria-hidden="true"
-                                      className={`${"translate-x-5"}
+                                >
+                                  <span className="sr-only">Use setting</span>
+                                  <span
+                                    aria-hidden="true"
+                                    className={`${"translate-x-5"}
                     pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
-                                    />
-                                  </Switch>
-                                ) : (
-                                  <Switch
-                                    onChange={() => {
-                                      if (user) {
-                                        addWishlist(e._id);
-                                      } else {
-                                        openModal();
-                                      }
-                                    }}
-                                    className={`${"bg-gray-200"}
-                    relative inline-flex flex-shrink-0 h-[26px] w-[46px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
-                                  >
-                                    <span className="sr-only">Use setting</span>
-                                    <span
-                                      aria-hidden="true"
-                                      className={`${"translate-x-0"}
-                    pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
-                                    />
-                                  </Switch>
-                                )
+                                  />
+                                </Switch>
                               ) : (
                                 <Switch
-                                  key={e._id}
                                   onChange={() => {
                                     if (user) {
                                       addWishlist(e._id);
@@ -194,51 +175,72 @@ function ls({ university, wish = false }) {
                                     }
                                   }}
                                   className={`${"bg-gray-200"}
-relative inline-flex flex-shrink-0 h-[26px] w-[46px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    relative inline-flex flex-shrink-0 h-[26px] w-[46px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                                 >
                                   <span className="sr-only">Use setting</span>
                                   <span
                                     aria-hidden="true"
                                     className={`${"translate-x-0"}
-pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
+                    pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
                                   />
                                 </Switch>
-                              )}
-                            </td>
-                            <td className="hidden sm:table-cell py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">
-                                {e.university_location}
-                              </div>
-                            </td>
-                            <td className="hidden sm:table-cell py-4 whitespace-nowrap">
-                              <span className="px-2 inline-flex text-[10px] leading-5 font-semibold rounded-full text-black">
-                                {e.scholarship}
-                              </span>
-                            </td>
-                            <td className="whitespace-nowrap mx-auto">
-                              <div
-                                className="text-sm text-gray-900  flex justify-center"
-                                onClick={() => router.push(`/find/${e.slug}`)}
+                              )
+                            ) : (
+                              <Switch
+                                key={e._id}
+                                onChange={() => {
+                                  if (user) {
+                                    addWishlist(e._id);
+                                  } else {
+                                    openModal();
+                                  }
+                                }}
+                                className={`${"bg-gray-200"}
+relative inline-flex flex-shrink-0 h-[26px] w-[46px] border-2 self-center border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                               >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-5 w-5 hover:scale-125 cursor-pointer"
-                                  viewBox="0 0 20 20"
-                                  fill="#4f46e5"
-                                >
-                                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </td>
-                          </tr>
-                        ))
-                    : null}
-                </tbody>
+                                <span className="sr-only">Use setting</span>
+                                <span
+                                  aria-hidden="true"
+                                  className={`${"translate-x-0"}
+pointer-events-none inline-block h-[22px] w-[22px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
+                                />
+                              </Switch>
+                            )}
+                          </td>
+                          <td className="hidden sm:table-cell py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">
+                              {e.university_location}
+                            </div>
+                          </td>
+                          <td className="hidden sm:table-cell py-4 whitespace-nowrap">
+                            <span className="px-2 inline-flex text-[10px] leading-5 font-semibold rounded-full text-black">
+                              {e.scholarship}
+                            </span>
+                          </td>
+                          <td className="whitespace-nowrap mx-auto">
+                            <div
+                              className="text-sm text-gray-900  flex justify-center"
+                              onClick={() => router.push(`/find/${e.slug}`)}
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5 hover:scale-125 cursor-pointer"
+                                viewBox="0 0 20 20"
+                                fill="#4f46e5"
+                              >
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                <path
+                                  fillRule="evenodd"
+                                  d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                  : null}
+              </tbody>
             </table>
           </div>
         </div>

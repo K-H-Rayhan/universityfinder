@@ -10,12 +10,14 @@ export default function EventPage({ university }) {
   const [dataUpdated, setdataUpdated] = useState();
   const { user } = useContext(userContext);
   useEffect(async () => {
-    const email = await localStorage.getItem("email");
-    const wishlistRes = await fetch(
-      `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
-    );
-    const wishlist = await wishlistRes.json();
-    setWishlists(wishlist);
+    try {
+      const email = await localStorage.getItem("email");
+      const wishlistRes = await fetch(
+        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
+      );
+      const wishlist = await wishlistRes.json();
+      setWishlists(wishlist);
+    } catch (e) {}
   }, []);
   useEffect(async () => {
     const email = await localStorage.getItem("email");
