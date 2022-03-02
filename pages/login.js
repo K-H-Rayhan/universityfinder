@@ -3,6 +3,7 @@ import Layout from "../component/Layout";
 import { Tab } from "@headlessui/react";
 import { userContext } from "../component/filters/states";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -73,34 +74,40 @@ function Login() {
   };
   return (
     <Layout>
+      <motion.div
+        initial={{ x: 300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: -300, opacity: 0 }}
+      >
+
       <div className=" bg-white flex justify-center items-center overflow-ellipsis mt-2 sm:mt-20">
         <div className="sm:py-6 py-3 sm:px-4 px-1 bg-white rounded-2xl border-2  z-20 border-gray-50 border-opacity-90 shadow-lg">
           <Tab.Group>
             <Tab.List className="flex p-1 space-x-1 bg-indigo-600 rounded-xl">
               <Tab
                 className={({ selected }) =>
-                  classNames(
-                    "w-1/2 py-2.5 text-sm leading-5 font-medium text-white rounded-lg",
-                    "focus:outline-none",
-                    selected
-                      ? "bg-white shadow text-black"
-                      : "text-white hover:bg-indigo-600 hover:text-white"
+                classNames(
+                  "w-1/2 py-2.5 text-sm leading-5 font-medium text-white rounded-lg",
+                  "focus:outline-none",
+                  selected
+                  ? "bg-white shadow text-black"
+                  : "text-white hover:bg-indigo-600 hover:text-white"
                   )
                 }
-              >
+                >
                 Login
               </Tab>
               <Tab
                 className={({ selected }) =>
-                  classNames(
-                    "w-1/2 py-2.5 text-sm leading-5 font-medium text-white rounded-lg text-center",
-                    "focus:outline-none ",
-                    selected
-                      ? "bg-white shadow text-black"
-                      : "text-white hover:bg-indigo-600 hover:text-white"
+                classNames(
+                  "w-1/2 py-2.5 text-sm leading-5 font-medium text-white rounded-lg text-center",
+                  "focus:outline-none ",
+                  selected
+                  ? "bg-white shadow text-black"
+                  : "text-white hover:bg-indigo-600 hover:text-white"
                   )
                 }
-              >
+                >
                 Register
               </Tab>
             </Tab.List>
@@ -110,8 +117,8 @@ function Login() {
                 className={classNames(
                   "bg-white rounded-xl p-3",
                   "focus:outline-none "
-                )}
-              >
+                  )}
+                  >
                 <form>
                   <div>
                     <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">
@@ -127,7 +134,7 @@ function Login() {
                       name="email"
                       value={inputs.email || ""}
                       onChange={handleChange}
-                    />
+                      />
                     <input
                       type="password"
                       placeholder="Password"
@@ -135,7 +142,7 @@ function Login() {
                       className="block py-3 px-4 rounded-lg w-full border outline-none"
                       value={inputs.password || ""}
                       onChange={handleChange}
-                    />
+                      />
                   </div>
                   <p className=" text-center text-red-600 pt-3">{message}</p>
                   <div className="text-center mt-6">
@@ -144,7 +151,7 @@ function Login() {
                       type="submit"
                       value="submit"
                       onClick={login}
-                    />
+                      />
                   </div>
                 </form>
               </Tab.Panel>
@@ -152,8 +159,8 @@ function Login() {
                 className={classNames(
                   "bg-white rounded-xl p-3",
                   "focus:outline-none "
-                )}
-              >
+                  )}
+                  >
                 <div>
                   <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">
                     Create an account to enjoy all the features
@@ -168,7 +175,7 @@ function Login() {
                       name="name"
                       value={inputs.name || ""}
                       onChange={handleChange}
-                    />
+                      />
                     <input
                       type="text"
                       placeholder="Email"
@@ -176,7 +183,7 @@ function Login() {
                       name="email"
                       value={inputs.email || ""}
                       onChange={handleChange}
-                    />
+                      />
                     <input
                       type="text"
                       placeholder="School"
@@ -184,7 +191,7 @@ function Login() {
                       name="school"
                       value={inputs.school || ""}
                       onChange={handleChange}
-                    />
+                      />
                     <input
                       type="text"
                       placeholder="Phone"
@@ -192,7 +199,7 @@ function Login() {
                       name="phone"
                       value={inputs.phone || ""}
                       onChange={handleChange}
-                    />
+                      />
                     <input
                       type="password"
                       placeholder="Password"
@@ -200,7 +207,7 @@ function Login() {
                       className="block py-3 px-4 rounded-lg w-full border outline-none"
                       value={inputs.password || ""}
                       onChange={handleChange}
-                    />
+                      />
                   </div>
                   <p className=" text-center text-red-600 pt-3">{message}</p>
                   <div className="text-center mt-6">
@@ -209,7 +216,7 @@ function Login() {
                       type="submit"
                       value="submit"
                       onClick={register}
-                    />
+                      />
                   </div>
                 </form>
               </Tab.Panel>
@@ -218,6 +225,7 @@ function Login() {
         </div>
       </div>
       <div className="w-full max-w-md px-2 py-16 sm:px-0"></div>
+                      </motion.div>
     </Layout>
   );
 }

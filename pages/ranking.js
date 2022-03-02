@@ -1,12 +1,18 @@
+import { motion } from "framer-motion";
 import React from "react";
 import Layout from "../component/Layout";
 import ListedUniversity from "../component/small/ListedUniversity";
 
 function Ranking({ universities }) {
- 
   return (
     <Layout>
-      <ListedUniversity university={universities} />
+      <motion.div
+        initial={{ x: 300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: -300, opacity: 0 }}
+      >
+        <ListedUniversity university={universities} />
+      </motion.div>
     </Layout>
   );
 }
@@ -23,9 +29,11 @@ export default Ranking;
 //   };
 // }
 export async function getStaticProps() {
-  const universityRes = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/`);
+  const universityRes = await fetch(
+    `https://limitless-taiga-11177.herokuapp.com/api/find/`
+  );
   const universities = await universityRes.json();
   return {
-    props: { universities: universities},
-  }
+    props: { universities: universities },
+  };
 }
