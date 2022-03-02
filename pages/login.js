@@ -77,7 +77,7 @@ function Login() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        initial={{ opacity: 0 }}
+        exit={{opacity: 0 }}
       >
 
       <div className=" bg-white flex justify-center items-center overflow-ellipsis mt-2 sm:mt-20">

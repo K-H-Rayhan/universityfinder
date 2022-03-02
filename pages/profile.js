@@ -15,7 +15,7 @@ function Profile() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        initial={{ opacity: 0 }}
+        exit={{opacity: 0 }}
       >
         {user ? (
           <div className="bg-[#fff] w-full py-10 px-10">
