@@ -19,7 +19,7 @@ function ls({ university, wish = false }) {
   useEffect(async () => {
     try {
       const email = await localStorage.getItem("email");
-      if (localStorage.getItem("email") != "undefined") {
+      if (email) {
         const wishlistRes = await fetch(
           `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
         );

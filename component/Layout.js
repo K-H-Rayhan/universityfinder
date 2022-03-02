@@ -17,7 +17,7 @@ function Layout({ title, description, keywords, children }) {
   );
 }
 
-export default Layout;
+export default React.memo(Layout);
 Layout.defaultProps = {
   title: "Find University",
   description: "Find the best universities",
