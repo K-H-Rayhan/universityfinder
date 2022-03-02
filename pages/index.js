@@ -16,9 +16,9 @@ function Index() {
   return (
     <Layout>
       <motion.div
-        initial={{ x: 300, opacity: 0 }}
+        initial={{ opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -300, opacity: 0 }}
+        initial={{ opacity: 0 }}
       >
         <div className="relative bg-white overflow-hidden z-auto">
           <div className="sm:pt-24 lg:pt-40 lg:pb-48">

@@ -39,9 +39,9 @@ function Index({ count }) {
       <locationContext.Provider value={{ selected, setSelected }}>
         <Layout className=" text-9xl">
           <motion.div
-            initial={{ x: 300, opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -300, opacity: 0 }}
+            initial={{ opacity: 0 }}
           >
             <form onSubmit={handleSubmit}>
               <div className="m-5 place-content-between gap-y-2 grid grid-cols-2 lg:grid-cols-4 gap-x-2">

@@ -7,9 +7,9 @@ function Ranking({ universities }) {
   return (
     <Layout>
       <motion.div
-        initial={{ x: 300, opacity: 0 }}
+        initial={{ opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -300, opacity: 0 }}
+        initial={{ opacity: 0 }}
       >
         <ListedUniversity university={universities} />
       </motion.div>

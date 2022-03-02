@@ -80,9 +80,9 @@ export default function EventPage({ university }) {
   return (
     <Layout>
       <motion.div
-        initial={{ x: 300, opacity: 0 }}
+        initial={{ opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -300, opacity: 0 }}
+        initial={{ opacity: 0 }}
       >
         <div className="sm:pt-6 px-4 sm:p-8  max-w-7xl mx-auto">
           <h1 className="text-2xl  font-extrabold tracking-tight text-gray-900 sm:text-3xl mt-6">
