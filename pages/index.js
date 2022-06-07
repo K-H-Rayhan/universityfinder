@@ -8,7 +8,7 @@ function Index() {
   useEffect(async () => {
     try {
       const csdf = await fetch(
-        "https://limitless-taiga-11177.herokuapp.com/api/find"
+        "https://universityfinderbackend-mongo-db.vercel.app/api/find"
       ).then((res) => res.json());
       setX(csdf[0]);
     } catch (e) {}

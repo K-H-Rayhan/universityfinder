@@ -21,7 +21,7 @@ function ls({ university, wish = false }) {
       const email = await localStorage.getItem("email");
       if (email) {
         const wishlistRes = await fetch(
-          `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
+          `https://universityfinderbackend-mongo-db.vercel.app/api/wishlist?user_mail=${email}`
         );
         const wishlist = await wishlistRes.json();
         setWishlists(wishlist);
@@ -40,7 +40,7 @@ function ls({ university, wish = false }) {
     };
     try {
       await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
+        `https://universityfinderbackend-mongo-db.vercel.app/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       await setdataUpdated(Math.random());
@@ -60,7 +60,7 @@ function ls({ university, wish = false }) {
     };
     try {
       await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
+        `https://universityfinderbackend-mongo-db.vercel.app/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       await setdataUpdated(Math.random());

@@ -18,7 +18,7 @@ function classNames(...classes) {
 export default function Header() {
   const [solutions, setSolutions] = useState();
   useEffect(() => {
-    fetch("https://limitless-taiga-11177.herokuapp.com/api/notice")
+    fetch("https://universityfinderbackend-mongo-db.vercel.app/api/notice")
       .then((response) => response.json())
       .then((data) => setSolutions(data))
       .catch((err) => console.error(err));

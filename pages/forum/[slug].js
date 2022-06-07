@@ -26,7 +26,7 @@ export default function EventPage({ post }) {
 }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`);
+  const res = await fetch(`https://universityfinderbackend-mongo-db.vercel.app/api/find/${slug}`);
   const post = await res.json();
   return {
     props: {

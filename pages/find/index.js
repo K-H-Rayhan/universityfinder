@@ -29,7 +29,7 @@ function Index({ count }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const universityRes = await fetch(
-      `https://limitless-taiga-11177.herokuapp.com/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`
+      `https://universityfinderbackend-mongo-db.vercel.app/api/filter?sscgpa=${gpa.sscgpa}&hscgpa=${gpa.hscgpa}&location=${selected.name}&department=${selected2.name}`
     );
     const university = await universityRes.json();
     setUniversities(university);

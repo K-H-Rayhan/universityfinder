@@ -19,7 +19,7 @@ function AdminUniversity({ university }) {
   const Add = async (e) => {
     e.preventDefault();
 
-    // fetch("https://limitless-taiga-11177.herokuapp.com/api/register", {
+    // fetch("https://universityfinderbackend-mongo-db.vercel.app/api/register", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",

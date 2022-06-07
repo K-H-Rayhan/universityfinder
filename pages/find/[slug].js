@@ -23,7 +23,7 @@ export default function EventPage({ university }) {
       const email = await localStorage.getItem("email");
       if (email) {
         const wishlistRes = await fetch(
-          `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${email}`
+          `https://universityfinderbackend-mongo-db.vercel.app/api/wishlist?user_mail=${email}`
         );
         const wishlist = await wishlistRes.json();
         setWishlists(wishlist);
@@ -42,7 +42,7 @@ export default function EventPage({ university }) {
     };
     try {
       await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
+        `https://universityfinderbackend-mongo-db.vercel.app/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       await setdataUpdated(Math.random());
@@ -62,7 +62,7 @@ export default function EventPage({ university }) {
     };
     try {
       const universityRes = await fetch(
-        `https://limitless-taiga-11177.herokuapp.com/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
+        `https://universityfinderbackend-mongo-db.vercel.app/api/wishlist?user_mail=${user_mail}&_id=${_id}`,
         settings
       );
       await setdataUpdated(Math.random());
@@ -329,7 +329,7 @@ export default function EventPage({ university }) {
 
 // export async function getServerSideProps({ query: { slug } }) {
 //   const res = await fetch(
-//     `https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`
+//     `https://universityfinderbackend-mongo-db.vercel.app/api/find/${slug}`
 //   );
 //   const university = await res.json();
 //   return {
@@ -341,7 +341,7 @@ export default function EventPage({ university }) {
 
 export async function getStaticPaths() {
   const universityRes = await fetch(
-    `https://limitless-taiga-11177.herokuapp.com/api/find/`
+    `https://universityfinderbackend-mongo-db.vercel.app/api/find/`
   );
   const universities = await universityRes.json();
 
@@ -357,7 +357,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const res = await fetch(
-    `https://limitless-taiga-11177.herokuapp.com/api/find/${slug}`
+    `https://universityfinderbackend-mongo-db.vercel.app/api/find/${slug}`
   );
   const university = await res.json();
 
